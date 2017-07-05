@@ -4,11 +4,14 @@
   width: 100%;
   top: 0;
   left: 0;
-  background: #333;
+  background: #2f2f2f;
+  z-index: 1000;
 }
 .container img{
   position: absolute;
   top: 15px;
+  outline: none;
+  cursor: pointer;
 }
 .header-title{
   text-align: center;
@@ -18,3 +21,13 @@
   line-height: 80px;
 }
 
+.container button{
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
+.container button.main{
+  position: absolute;
+  top: 30px;
+  right: 100px;
+}

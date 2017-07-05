@@ -4,6 +4,7 @@
   font-family: "Microsoft YaHei";
 }
 .container {
+  position: relative;
   width: 1400px;
   margin: 0 auto;
 }
