@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import {TextDemoComponent} from "./text_demo/text_demo.component";
-import  { AppRoutingModule } from './app-routing.module'
+import  { AppRoutingModule } from './app-routing.module';
+import {FileUploadModule} from "ng2-file-upload";
+import {FormsModule} from "@angular/forms";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +15,9 @@ import  { AppRoutingModule } from './app-routing.module'
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    FileUploadModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,11 +5,24 @@
     <div class="tab_item" (click)="bigText()" [class.tab_focus]="textShow==3">超大文本文件</div>
   </div>
   <div [style.display]="textShow==1?'':'none'">
-    <textarea class="textarea" maxlength="2000" placeholder="建议输入2000字以内"></textarea>
-    <div>开始文本分析</div>
+    <textarea class="textarea" maxlength="2000" [(ngModel)]="txtValue" placeholder="建议输入2000字以内" id="demoTxt" (keyup)="textChange()"></textarea>
+    <div class="btn ready" [style.display]="textBtn==1?'':'none'">开始文本分析</div>
+    <div class="btn start" [style.display]="textBtn==2?'':'none'">开始文本分析</div>
+    <div class="btn ongoing" [style.display]="textBtn==3?'':'none'">文本分析中...</div>
+    <div class="btn end" [style.display]="textBtn==4?'':'none'">查看文本分析结果</div>
   </div>
   <div [style.display]="textShow==2?'':'none'">
-    2
+    <div class="uploadContainer" id="uploadTxt">
+      <div class="inputContent" ng2FileDrop [ngClass]="{dropping: isDropZoneOver}" (fileOver)="fileOverBase($event)" (onFileDrop)="fileDropOver($event)" [uploader]="uploader">
+        <span onclick="document.getElementById('file').click()">上传文件（可拖拽）</span>
+        <input type="file" id="file" name="file" multiple ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+        <p>支持txt/doc/docx/pdf格式文件，建议总文件数10个以内</p>
+      </div>
+    </div>
+    <div class="btn ready" [style.display]="uploadBtn==1?'':'none'">开始文本分析</div>
+    <div class="btn start" [style.display]="uploadBtn==2?'':'none'">开始文本分析</div>
+    <div class="btn ongoing" [style.display]="uploadBtn==3?'':'none'">文本分析中...</div>
+    <div class="btn end" [style.display]="uploadBtn==4?'':'none'">查看文本分析结果</div>
   </div>
   <div [style.display]="textShow==3?'':'none'">
     3
