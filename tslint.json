@@ -1,8 +1,8 @@
 {
   "rulesDirectory": [
     "node_modules/codelyzer"
-  ],
-  "rules": {
+  ]
+  /*"rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
@@ -131,5 +131,5 @@
     "no-access-missing-member": true,
     "templates-use-public": true,
     "invoke-injectable": true
-  }
+  }*/
 }
