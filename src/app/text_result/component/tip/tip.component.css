@@ -17,8 +17,8 @@
   height: 22px;
   line-height: 22px;
   font-size: 14px;
-  transition: 0.2s all linear 0s;
+  transition: 0.1s all linear 0s;
 }
 .tip:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 7px rgba(0,0,0,0.6);
 }
