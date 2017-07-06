@@ -12,6 +12,7 @@ import { FormsModule} from "@angular/forms";
 import  { WordAnalysisComponent } from './text_result/word-analysis/word.analysis.component'
 import  { WordRatioComponent } from './text_result/word-ratio/word.ratio.component'
 import  { EntityRecognitionComponent } from './text_result/entity-recognition/entity.recognition.component'
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import  { EntityRecognitionComponent } from './text_result/entity-recognition/en
     BrowserModule,
     FileUploadModule,
     FormsModule,
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
