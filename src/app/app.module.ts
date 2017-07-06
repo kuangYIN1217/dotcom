@@ -17,6 +17,10 @@ import { InfoExtractComponent } from './text_result/info-extract/info.extract.co
 import { TextCategoryComponent } from './text_result/text-category/text.category.component';
 import { EmotionalRecognitionComponent } from './text_result/emotional-recognition/emotional.recognition.component';
 import { SemanticAssociationComponent } from './text_result/semantic-association/semantic.association.component';
+
+import { TitleDesComponent } from './text_result/component/title-des/title.des.component';
+import { CheckboxComponent } from './text_result/component/checkbox/checkbox.component';
+import { TipComponent } from './text_result/component/tip/tip.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,10 @@ import { SemanticAssociationComponent } from './text_result/semantic-association
     InfoExtractComponent,
     TextCategoryComponent,
     EmotionalRecognitionComponent,
-    SemanticAssociationComponent
+    SemanticAssociationComponent,
+    TitleDesComponent,
+    CheckboxComponent,
+    TipComponent
   ],
   imports: [
     AppRoutingModule,

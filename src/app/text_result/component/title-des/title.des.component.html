@@ -1,0 +1,11 @@
+<div class="title-des-wrapper">
+  <div class="title" *ngIf="title">
+    {{title}}
+  </div>
+  <div class="des" *ngIf="des" [ngClass]="{'no-title': !title}">
+    {{des}}
+  </div>
+  <ul class="des" *ngIf="ul" [ngClass]="{'no-title': !title}">
+    <li *ngFor="let item of lis">{{item}}</li>
+  </ul>
+</div>
