@@ -2,13 +2,18 @@
   <div class="left item">
     <div class="top">实体识别</div>
     <div class="content">
-
+      <cpt-tip [data]="d_word_list"></cpt-tip>
     </div>
   </div>
   <div class="right item">
-    <div class="top">实体图例</div>
+    <div class="top">实体图例
+      <div class="select-all">
+        <input type="checkbox" (change)="$selected_all_change()"><span>全选</span>
+      </div></div>
     <div class="content">
 
+      <cpt-checkbox [(data)]="d_word_list"></cpt-checkbox>
+      <cpt-title-des title="实体识别说明" des="实体识别是识别文本中具有特定意义的实体，主要包括人名、地名、机构名、专有名词等。"></cpt-title-des>
     </div>
   </div>
 </div>

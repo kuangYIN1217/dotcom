@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 *{
   margin:0;
-  font-family: "Microsoft YaHei";
+  font-family: Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif
+}
+html,body {
+  margin: 0;
+  padding: 0;
+  font-family: Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif
 }
 .container {
   position: relative;
@@ -11,21 +16,7 @@
 .padding-header {
   padding-top: 80px;
 }
-@media only all and (max-width: 1600px) {
-  .container {
-    width: 1170px;
-  }
-}
-@media only all and (max-width: 1400px) {
-  .container {
-    width: 998px;
-  }
-}
-@media only all and (max-width: 1170px) {
-  .container {
-    width: 768px;
-  }
-}
+
 
 
 /* */
@@ -53,18 +44,57 @@
 }
 .row .right {
   margin-left: 10px;
-  flex: 0 0 35.9%;
+  flex: 0 0 28%;
 }
+
 .row .item .top {
+  position: relative;
   flex: 0 0 50px;
   height: 50px;
   border-bottom: 1px solid #d8d8d8;
-  font-size: 18px;
+  font-size: 16px;
   color: #333;
   text-align: center;
   line-height: 50px;
 }
+.top .select-all {
+  position: absolute;
+  top:8px;
+  right: 20px;
+  font-size: 14px;
+  color: #333;
+}
+.top .select-all input {
+  display: inline-block;
+  vertical-align: middle;
+}
+.top .select-all span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
 .row .item .content {
   flex: 1;
   overflow: auto;
+  padding: 20px;
+}
+
+/* @meida */
+@media only all and (max-width: 1600px) {
+  .container {
+    width: 1170px;
+  }
+}
+@media only all and (max-width: 1400px) {
+  .container {
+    width: 998px;
+  }
+  .row .right {
+    flex: 0 0 35%;
+  }
+}
+@media only all and (max-width: 1170px) {
+  .container {
+    width: 768px;
+  }
 }

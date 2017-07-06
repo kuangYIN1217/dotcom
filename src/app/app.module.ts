@@ -9,11 +9,18 @@ import  { AppRoutingModule } from './app-routing.module'
 import { FileUploadModule} from "ng2-file-upload";
 import { FormsModule} from "@angular/forms";
 
-import  { WordAnalysisComponent } from './text_result/word-analysis/word.analysis.component'
-import  { WordRatioComponent } from './text_result/word-ratio/word.ratio.component'
-import  { EntityRecognitionComponent } from './text_result/entity-recognition/entity.recognition.component'
-import {HttpModule} from "@angular/http";
+import { WordAnalysisComponent } from './text_result/word-analysis/word.analysis.component';
+import { WordRatioComponent } from './text_result/word-ratio/word.ratio.component';
+import { EntityRecognitionComponent } from './text_result/entity-recognition/entity.recognition.component';
+import { AutoSummaryComponent } from './text_result/auto-summary/auto.summary.component';
+import { InfoExtractComponent } from './text_result/info-extract/info.extract.component';
+import { TextCategoryComponent } from './text_result/text-category/text.category.component';
+import { EmotionalRecognitionComponent } from './text_result/emotional-recognition/emotional.recognition.component';
+import { SemanticAssociationComponent } from './text_result/semantic-association/semantic.association.component';
 
+import { TitleDesComponent } from './text_result/component/title-des/title.des.component';
+import { CheckboxComponent } from './text_result/component/checkbox/checkbox.component';
+import { TipComponent } from './text_result/component/tip/tip.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,14 +29,21 @@ import {HttpModule} from "@angular/http";
     TextResultComponent,
     WordAnalysisComponent,
     WordRatioComponent,
-    EntityRecognitionComponent
+    EntityRecognitionComponent,
+    AutoSummaryComponent,
+    InfoExtractComponent,
+    TextCategoryComponent,
+    EmotionalRecognitionComponent,
+    SemanticAssociationComponent,
+    TitleDesComponent,
+    CheckboxComponent,
+    TipComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FileUploadModule,
     FormsModule,
-    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
