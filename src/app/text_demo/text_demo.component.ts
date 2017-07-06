@@ -25,6 +25,7 @@ export class TextDemoComponent {
   }
   fileDropOver(event) {
     console.log(2);
+    console.log(this.uploader.queue[0].file.name);
     // 文件拖拽完成的回调函数
   }
   textChange(){
