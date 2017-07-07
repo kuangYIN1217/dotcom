@@ -10,4 +10,17 @@ import {Component} from '@angular/core'
   templateUrl: './emotional.recognition.component.html'
 })
 export class EmotionalRecognitionComponent {
+  d_value:any = {
+    pos: 0.37,
+    neg: 0.63
+  }
+  getStyle () {
+    return {
+      'flex': '0 0 37%',
+      'width': '37%'
+    };
+  }
+  ngOnInit() {
+
+  }
 }

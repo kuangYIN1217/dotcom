@@ -36,11 +36,11 @@ export class TextResultComponent {
       scrollTop = document.body.scrollTop;
     }
     /* 档scrollTop为10的倍数 计算当前位置 */
-    let scroll = scrollTop - 530;
+    let scroll = scrollTop - 490;
     if (scroll <= 0) {
       this.s_selected_index = 0;
     }else {
-      this.s_selected_index = Math.floor(scroll / 500) + ((scroll % 500) > 400 ? 1 : 0)
+      this.s_selected_index = Math.floor(scroll / 480) + ((scroll % 480) > 450 ? 1 : 0)
     }
   }
 

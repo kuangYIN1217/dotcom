@@ -1,8 +1,19 @@
 <div class="row">
   <div class="left item">
     <div class="top">情感识别</div>
-    <div class="content">
-
+    <div class="content emotional-recognition">
+      <div class="img">
+        <img src="../../../assets/text_result/neg.png" alt="">
+        <label>负面指数 : {{d_value.neg}}</label>
+      </div>
+      <div class="bar">
+        <div class="neg"></div>
+        <div class="pos" [ngStyle]="getStyle()"></div>
+      </div>
+      <div class="img">
+        <img src="../../../assets/text_result/pos.png" alt="">
+        <label>正面指数 : {{d_value.pos}}</label>
+      </div>
     </div>
   </div>
   <div class="right item">
