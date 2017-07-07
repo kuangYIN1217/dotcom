@@ -13,9 +13,11 @@ export class TextDemoComponent {
   textBtn:number=1;
   uploadBtn:number=1;
   txtValue:string;
-  interval: any;
   progress:number=0;
-  textArr:any[]=[];
+  sizeArr:any[]=[];
+  size:number=0;
+  tip:number=0;
+  name:string;
   constructor() {
   }
   public uploader:FileUploader = new FileUploader({
@@ -23,10 +25,22 @@ export class TextDemoComponent {
     method: "POST",
     itemAlias: "file",
   });
-  selectedFileOnChanged(event){
+  selectedFileOnChanged(event:any){
     // 这里是文件选择完成后的操作处理
-    console.log(event.target);
-    this.getProgress();
+    console.log(this.uploader.queue.length);
+    for(let i in this.uploader.queue){
+      if( this.uploader.queue[i].isUploaded){
+        continue;
+      }else{
+        this.uploader.queue[i].onBeforeUpload=()=>{
+          console.log(this.uploader.queue[i].file.name);
+        }
+        this.getProgress(i);
+
+      }
+
+    }
+    //this.getProgress();
   }
 
   fileOverBase(event) {
@@ -34,19 +48,45 @@ export class TextDemoComponent {
   }
   fileDropOver(event) {
     // 文件拖拽完成的回调函数
-    console.log(event);
-    this.getProgress();
+    for(let i in event){
+      if(parseInt(i)==NaN){
+          break;
+      }else{
+        for(let j in this.uploader.queue){
+          if(event[i].name==this.uploader.queue[j].file.name){
+              this.getProgress(j);
+          }
+        }
+      }
+    }
   }
-  getProgress(){
-    this.progress=0;
-    this.uploader.queue[0].onProgress = (progress: number)=> {
-      this.progress = progress;
-      console.log(this.progress);
+
+  getProgress(j){
+    this.uploader.queue[j].onProgress = (progress: number)=> {
+      this.progress=0;
+      this.uploader.queue[j].progress = progress;
+      if(this.uploader.queue[j].progress==100){
+        setTimeout(()=>{
+          this.uploader.queue[j].headers.flag=1;
+        }, 1000);
+
+      }
     };
-    this.uploader.queue[0].upload();
+    this.uploader.queue[j].upload();
+
   }
   result(){
-
+    for(let i in this.uploader.queue){
+      this.sizeArr.push(this.uploader.queue[i].file.size);
+      this.size+=this.uploader.queue[i].file.size;
+    }
+   if((this.size/1024/1024)>50){
+      this.tip=1;
+      return false;
+   };
+  }
+  cancel(){
+    this.tip=0;
   }
   textChange(){
     if(this.txtValue.length>0){

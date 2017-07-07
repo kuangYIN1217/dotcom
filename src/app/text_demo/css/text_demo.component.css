@@ -83,6 +83,7 @@ textarea::-moz-placeholder, textarea::-moz-placeholder {
 .inputContent{
   vertical-align: middle;
   font-size: 16px;
+  text-align: center;
 }
 .uploadContainer{
   width:100%;
@@ -94,9 +95,12 @@ textarea::-moz-placeholder, textarea::-moz-placeholder {
   -moz-box-shadow:0 0 10px rgba(130,130,130,0.2);
   box-shadow:0 0 10px rgba(130,130,130,0.2);
 }
-.inputContent{
+
+.inputContentNo{
   padding:182px 0 172px;
-  text-align: center;
+}
+.inputContentYes{
+  padding:90px 0 96px !important;
 }
 .inputContent span{
   margin:0 auto;
@@ -129,6 +133,7 @@ ul,li{
   float: left;
   display: inline-block;
   text-align: left;
+  padding-top: 2px;
 }
 .uploadImg{
   float: left;
@@ -160,11 +165,13 @@ td{
 
 }
 .uploadTr{
-  border-bottom: 1px solid #d3d3d3;
   border-collapse:collapse;
   display: block;
   padding:20px 0 10px 0;
   overflow: hidden;
+}
+.border{
+  border-bottom: 1px solid #d3d3d3;
 }
 .progressouter{
   width:776px;
@@ -188,11 +195,81 @@ td{
   line-height: 20px;
 }
 .progressinner{
-  background: #ed8942;
+  /*background: #ed8942;*/
+  background: linear-gradient(rgb(236,148,81),rgb(235,123,53));
   border-radius: 10px;
   height:18px;
-  box-shadow:0px 2px 2px #ccc inset;
+  /*box-shadow:0px 2px 2px #ccc inset;*/
   margin:0 1px;
+}
+.dialog{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(111, 111, 111, 0.3);
+  opacity: 1;
+}
+.dialogContainer{
+  position: absolute;
+  width: 800px;
+  height:auto;
+  top: 80px;
+  left: 50%;
+  margin-left: -400px;
+  background: #fff;
+  color: #FFF;
+  border-radius: 5px;
+  border:1px solid #ccc;
+  -webkit-box-shadow:0 0 10px #999999;
+  -moz-box-shadow:0 0 10px #999999;
+  box-shadow:0 0 10px #999999;
+  z-index: 1111111;
+}
+.addDialogContainer{
+  top:50%;
+  width:506px;
+  left:50%;
+  margin-left: -253px;
+  margin-top: -195px;
+  font-size: 14px;
+}
+.dialogHeader{
+  background: #eeeeee;
+  color: #333333;
+  border-top-left-radius :5px;
+  border-top-right-radius:5px;
+}
+.dialogHeader,.dialogContent{
+  position: relative;
+  color: #333333;
+  left:0;
+}
+.dialogHeader span{
+  display: block;
+  height:40px;
+  line-height: 40px;
+  padding-left: 34px;
+  margin-bottom: 42px;
+}
+.delSys{
+  text-align: center;
+  padding:50px 0 42px;
+}
+.diabtn{
+  display: inline-block;
+  color: #333333;
+  font-size: 14px;
+  width:114px;
+  height:30px;
+  text-align: center;
+  line-height: 30px;
+  background: #eeeeee;
+  border-radius: 5px;
+  border:1px solid #d3d3d3;
+  margin-left: 14px;
+  text-decoration: none;
 }
 @media only all and (max-width: 1600px) {
   .container {
