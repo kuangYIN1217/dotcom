@@ -24,7 +24,7 @@ html,body {
 .row {
   display: flex;
   margin-bottom: 10px;
-  height: 450px;
+  height: 480px;
   padding: 2px;
   box-sizing: border-box;
 }
