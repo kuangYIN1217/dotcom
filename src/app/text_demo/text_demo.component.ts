@@ -46,9 +46,6 @@ export class TextDemoComponent {
     this.uploader.queue[0].upload();
   }
   result(){
-    console.log(this.uploader.queue.length);
-    for(var i in this.uploader.queue)
-    console.log(this.uploader.queue[i].file.size/1024);
 
   }
   textChange(){
