@@ -10,4 +10,10 @@ import {Component} from '@angular/core'
   templateUrl: './semantic.association.component.html'
 })
 export class SemanticAssociationComponent {
+  ngOnInit() {
+    this.initEcharts();
+  }
+  initEcharts() {
+
+  }
 }
