@@ -1,32 +1,52 @@
 import { Component } from '@angular/core';
-import {FileUploader} from "ng2-file-upload";
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+import {FileItem, FileUploader} from "ng2-file-upload";
+import {TextService} from "../common/services/text.service";
+import {SERVER_URL} from "../app.constants";
 @Component({
   selector: 'text_demo',
   styleUrls: ['./css/text_demo.component.css'],
-  templateUrl: './templates/text_demo.html'
+  templateUrl: './templates/text_demo.html',
+  providers: [TextService]
 })
 export class TextDemoComponent {
   textShow:number=1;
   textBtn:number=1;
-  demoTxt:string;
   uploadBtn:number=1;
   txtValue:string;
+  interval: any;
+  progress:number=0;
+  textArr:any[]=[];
   constructor() {
   }
-  public uploader:FileUploader = new FileUploader({url: URL});
-
-  selectedFileOnChanged(){
-    console.log(1);
+  public uploader:FileUploader = new FileUploader({
+    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+    method: "POST",
+    itemAlias: "file",
+  });
+  selectedFileOnChanged(event){
     // 这里是文件选择完成后的操作处理
+    console.log(event.target);
+    this.getProgress();
   }
+
   fileOverBase(event) {
     // 拖拽状态改变的回调函数
   }
   fileDropOver(event) {
-    console.log(2);
-    console.log(this.uploader.queue[0].file.name);
     // 文件拖拽完成的回调函数
+    console.log(event);
+    this.getProgress();
+  }
+  getProgress(){
+    this.progress=0;
+    this.uploader.queue[0].onProgress = (progress: number)=> {
+      this.progress = progress;
+      console.log(this.progress);
+    };
+    this.uploader.queue[0].upload();
+  }
+  result(){
+
   }
   textChange(){
     if(this.txtValue.length>0){

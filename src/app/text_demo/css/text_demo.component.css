@@ -117,12 +117,98 @@ textarea::-moz-placeholder, textarea::-moz-placeholder {
 #file{
   display: none;
 }
+ul,li{
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+.uploadTxt{
+  font-size: 14px;
+  width:378px;
+  color: #4db9d3;
+  float: left;
+  display: inline-block;
+  text-align: left;
+}
+.uploadImg{
+  float: left;
+  display: inline-block;
+  width:378px;
+  text-align: right;
+  margin-bottom: 12px;
+}
+.imgMiddle{
+  display: inline-block;
+  vertical-align: middle;
+}
+.right{
+  margin-right: 12px;
+}
+.paddingRight{
+  padding-right: 20px;
+}
+.paddingLeft{
+  padding-left: 20px;
+}
+td{
+  padding:0;
+}
+.uploadShow{
+  width:800px;
+  margin:0 auto;
+  padding-top: 80px;
+
+}
+.uploadTr{
+  border-bottom: 1px solid #d3d3d3;
+  border-collapse:collapse;
+  display: block;
+  padding:20px 0 10px 0;
+  overflow: hidden;
+}
+.progressouter{
+  width:776px;
+  height:18px;
+  background: #999999;
+  border:1px solid #b5b5b5;
+  border-radius: 10px;
+  box-shadow:0px 5px 5px #818181 inset;
+  clear: both;
+  margin:0 auto;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+}
+.progressouter span{
+  position: absolute;
+  z-index: 999;
+  color: #ffffff;
+  display: inline-block;
+  height:20px;
+  line-height: 20px;
+}
+.progressinner{
+  background: #ed8942;
+  border-radius: 10px;
+  height:18px;
+  box-shadow:0px 2px 2px #ccc inset;
+  margin:0 1px;
+}
 @media only all and (max-width: 1600px) {
   .container {
     width: 1170px !important;
   }
   .textarea{
     width: 1110px !important;
+  }
+  .uploadShow{
+    width:770px !important;
+  }
+  .progressouter{
+    width:746px !important;
+  }
+  .uploadTxt,.uploadImg{
+    width:363px !important;
   }
 }
 @media only all and (max-width: 1400px) {
@@ -132,6 +218,15 @@ textarea::-moz-placeholder, textarea::-moz-placeholder {
   .textarea{
     width: 938px !important;
   }
+  .uploadShow{
+    width:598px !important;
+  }
+  .progressouter{
+    width:574px !important;
+  }
+  .uploadTxt,.uploadImg{
+    width:277px !important;
+  }
 }
 @media only all and (max-width: 1170px) {
   .container {
@@ -139,6 +234,15 @@ textarea::-moz-placeholder, textarea::-moz-placeholder {
   }
   .textarea{
     width: 708px !important;
+  }
+  .uploadShow{
+    width:368px !important;
+  }
+  .progressouter{
+    width:344px !important;
+  }
+  .uploadTxt,.uploadImg{
+    width:162px !important;
   }
 }
 

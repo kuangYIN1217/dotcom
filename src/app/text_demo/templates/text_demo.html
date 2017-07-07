@@ -13,14 +13,24 @@
   </div>
   <div [style.display]="textShow==2?'':'none'">
     <div class="uploadContainer" id="uploadTxt">
+      <table class="uploadShow" *ngIf="uploader.queue.length>0">
+        <tr *ngFor="let item of uploader.queue" class="uploadTr">
+          <td class="uploadTxt paddingLeft"><img src="../assets/text_input/unupload.png" class="imgMiddle right" *ngIf="progress==0"/><img src="../assets/text_input/upload.png" class="imgMiddle right" *ngIf="progress!=0"/>{{item.file.name}}<span *ngIf="(item.file.size/1024)>=1024">（{{item.file.size/1024/1024|number:'1.2-2'}}）MB</span><span *ngIf="(item.file.size/1024)<1024">（{{item.file.size/1024|number:'1.2-2'}}）KB</span></td>
+          <td class="uploadImg paddingRight"><img src="../assets/text_input/delete.png" class="imgMiddle" (click)="item.remove()"/></td>
+          <div class="progressouter">
+            <span>{{progress}}%</span>
+            <div class="progressinner" [ngStyle]="{width: progress + '%'}"></div>
+          </div>
+        </tr>
+      </table>
       <div class="inputContent" ng2FileDrop [ngClass]="{dropping: isDropZoneOver}" (fileOver)="fileOverBase($event)" (onFileDrop)="fileDropOver($event)" [uploader]="uploader">
         <span onclick="document.getElementById('file').click()">上传文件（可拖拽）</span>
         <input type="file" id="file" name="file" multiple ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
         <p>支持txt/doc/docx/pdf格式文件，建议总文件数10个以内</p>
       </div>
     </div>
-    <div class="btn ready" [style.display]="uploadBtn==1?'':'none'">开始文本分析</div>
-    <div class="btn start" [style.display]="uploadBtn==2?'':'none'">开始文本分析</div>
+    <div class="btn ready" *ngIf="uploader.queue.length==0">开始文本分析</div>
+    <div class="btn start" *ngIf="uploader.queue.length>0" (click)="result()">开始文本分析</div>
     <div class="btn ongoing" [style.display]="uploadBtn==3?'':'none'">文本分析中...</div>
     <div class="btn end" [style.display]="uploadBtn==4?'':'none'">查看文本分析结果</div>
   </div>
