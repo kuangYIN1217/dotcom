@@ -22,7 +22,7 @@ export class SemanticAssociationComponent {
         y: null,
         id: '0',
         name: '中国',
-        symbolSize: 10,
+        symbolSize: 40,
         itemStyle: {
           normal: {
             color: '#71d3cf'
@@ -33,7 +33,7 @@ export class SemanticAssociationComponent {
         x: null,
         y: null,
         name: '江苏',
-        symbolSize: 5,
+        symbolSize: 15,
         itemStyle: {
           normal: {
             color: '#ffb680'
@@ -44,7 +44,7 @@ export class SemanticAssociationComponent {
         name: '北京',
         x: null,
         y: null,
-        symbolSize: 5,
+        symbolSize: 15,
         itemStyle: {
           normal: {
             color: '#ffb680'
@@ -53,7 +53,7 @@ export class SemanticAssociationComponent {
       },{
         id: '3',
         name: '中国',
-        symbolSize: 10,
+        symbolSize: 40,
         itemStyle: {
           normal: {
             color: '#71d3cf'
@@ -62,7 +62,7 @@ export class SemanticAssociationComponent {
       }, {
         id: '4',
         name: '江苏',
-        symbolSize: 5,
+        symbolSize: 15,
         itemStyle: {
           normal: {
             color: '#ffb680'
@@ -71,7 +71,7 @@ export class SemanticAssociationComponent {
       }, {
         id: '5',
         name: '北京',
-        symbolSize: 5,
+        symbolSize: 15,
         itemStyle: {
           normal: {
             color: '#ffb680'
@@ -111,9 +111,13 @@ export class SemanticAssociationComponent {
                 position: 'right'
               }
             },
+            force: {
+              repulsion: 150,
+              gravity: 0.1,
+              edgeLength: 40,
+            },
             roam: false,
             draggable: false, // 节点是否可以拖拽
-            repulsion: 500,
             legendHoverLink: true, // hover时候高亮
             focusNodeAdjacency: true,
           }
