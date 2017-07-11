@@ -10,9 +10,11 @@ declare var $: any;
 })
 export class TextResultComponent {
   s_selected_index: number = 0;
+
   constructor() {
 
   }
+
   ngOnInit() {
     this.setSelectedScrollTop();
     this.windowScroll();
@@ -39,14 +41,14 @@ export class TextResultComponent {
     let scroll = scrollTop - 490;
     if (scroll <= 0) {
       this.s_selected_index = 0;
-    }else {
+    } else {
       this.s_selected_index = Math.floor(scroll / 480) + ((scroll % 480) > 450 ? 1 : 0)
     }
   }
 
   /* 点击menu触发滚动条 */
-  $menu_click (index) {
+  $menu_click(index) {
     var pos = $('.row').eq(index).offset().top - 160;
-    $("html,body").animate({ scrollTop: pos }, 400);
+    $("html,body").animate({scrollTop: pos}, 400);
   }
 }
