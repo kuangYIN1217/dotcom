@@ -67,6 +67,7 @@ textarea::-moz-placeholder, textarea::-moz-placeholder {
   color: #f0f0f0;
   text-align: center;
   margin-top: -4px;
+  cursor: pointer;
 }
 .ready{
   background: #b2b2b2;
