@@ -53,7 +53,7 @@ export class TextDemoComponent {
     console.log(event);
     for(let i in event){
       if(parseInt(i)==NaN){
-          break;
+        break;
       }else{
         for(let j in this.uploader.queue){
           let type = this.uploader.queue[j].file.name.split('.').pop().toLowerCase();
@@ -92,10 +92,10 @@ export class TextDemoComponent {
         this.uploader.queue[i].remove();
       }
     }
-   if((this.size/1024/1024)>50){
+    if((this.size/1024/1024)>50){
       this.tip=1;
       return false;
-   }
+    }
   }
   cancel(){
     this.tip=0;
