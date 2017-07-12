@@ -5,18 +5,18 @@
     <div class="tab_item" (click)="bigText()" [class.tab_focus]="textShow==3">超大文本文件</div>
   </div>
   <div [style.display]="textShow==1?'':'none'">
-    <textarea class="textarea" maxlength="2000" [(ngModel)]="txtValue" placeholder="建议输入2000字以内" id="demoTxt" (keyup)="textChange()"></textarea>
-    <div class="btn ready" [style.display]="textBtn==1?'':'none'">开始文本分析</div>
-    <div class="btn start" [style.display]="textBtn==2?'':'none'">开始文本分析</div>
-    <div class="btn ongoing" [style.display]="textBtn==3?'':'none'">文本分析中...</div>
-    <div class="btn end" [style.display]="textBtn==4?'':'none'">查看文本分析结果</div>
+    <textarea class="textarea" maxlength=2000 [(ngModel)]="txtValue" placeholder="建议输入2000字以内" id="demoTxt" (keyup)="textChange()"></textarea>
+    <a class="btn ready" [style.display]="textBtn==1?'':'none'">开始文本分析</a>
+    <a class="btn start" [style.display]="textBtn==2?'':'none'" (click)="textStart(txtValue)">开始文本分析</a>
+    <a class="btn ongoing" [style.display]="textBtn==3?'':'none'">文本分析中...</a>
+    <a class="btn end" [style.display]="textBtn==4?'':'none'" (click)="analysisResult()" routerLinkActive="active" routerLink="/text_result">查看文本分析结果</a>
   </div>
   <div [style.display]="textShow==2?'':'none'">
     <div class="uploadContainer" id="uploadTxt">
-      <table class="uploadShow" *ngIf="uploader.queue.length>0">
-        <tr *ngFor="let item of uploader.queue" class="uploadTr" [ngClass]="{border: item.headers.flag==1}">
+      <table class="uploadShow" *ngIf="showArr.length>0">
+        <tr *ngFor="let item of showArr;let i =index" class="uploadTr" [ngClass]="{border: item.headers.flag==1}">
           <td class="uploadTxt paddingLeft"><img src="../assets/text_input/unupload.png" class="imgMiddle right" *ngIf="item.progress==0"/><img src="../assets/text_input/upload.png" class="imgMiddle right"  *ngIf="item.progress!=100&&(item.progress!=0)"/>{{item.file.name}}<span *ngIf="(item.file.size/1024)>=1024">（{{item.file.size/1024/1024|number:'1.2-2'}}）MB</span><span *ngIf="(item.file.size/1024)<1024">（{{item.file.size/1024|number:'1.2-2'}}）KB</span></td>
-          <td class="uploadImg paddingRight"><img src="../assets/text_input/delete.png" class="imgMiddle" (click)="item.cancel()" *ngIf="item.progress<100&&(item.progress>0)"/><img src="../assets/text_input/delete.png" class="imgMiddle" (click)="item.remove()" *ngIf="item.progress==100||(item.progress==0)"/></td>
+          <td class="uploadImg paddingRight"><!--<img src="../assets/text_input/delete.png" class="imgMiddle" (click)="item.cancel()" *ngIf="item.progress<100&&(item.progress>0)"/> *ngIf="item.progress==100||(item.progress==0)"--><img src="../assets/text_input/delete.png" class="imgMiddle" (click)="remove(i)"/></td>
           <div class="progressouter" *ngIf="item.headers.flag==0||(!item.headers.flag)">
             <span>{{item.progress}}%</span>
             <div class="progressinner" [ngStyle]="{width: item.progress + '%'}"></div>
@@ -25,15 +25,16 @@
       </table>
       <div class="inputContent inputContentNo" [ngClass]="{inputContentYes: uploader.queue.length>0}" ng2FileDrop [ngClass]="{dropping: isDropZoneOver}" (fileOver)="fileOverBase($event)" (onFileDrop)="fileDropOver($event)" [uploader]="uploader">
         <span onclick="document.getElementById('file').click()">上传文件（可拖拽）</span>
-        <input type="file" multiple id="file" name="file" accept="text/plain,application/msword,application/pdf" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
-        <!--<input type="file" multiple (change)="changeValue($event)" />-->
+        <input type="file" multiple id="file" name="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+        <!--accept="text/plain,application/msword,application/pdf"
+        -->
         <p>支持txt/doc/docx/pdf格式文件，建议总文件数10个以内</p>
       </div>
     </div>
-    <div class="btn ready" *ngIf="uploader.queue.length==0">开始文本分析</div>
-    <div class="btn start" *ngIf="uploader.queue.length>0" (click)="result()">开始文本分析</div>
-    <div class="btn ongoing" [style.display]="uploadBtn==3?'':'none'">文本分析中...</div>
-    <div class="btn end" [style.display]="uploadBtn==4?'':'none'">查看文本分析结果</div>
+    <a class="btn ready" *ngIf="uploader.queue.length==0">开始文本分析</a>
+    <a class="btn start" *ngIf="uploader.queue.length>0" (click)="result()">开始文本分析</a>
+    <a class="btn ongoing" [style.display]="uploadBtn==3?'':'none'">文本分析中...</a>
+    <a class="btn end" [style.display]="uploadBtn==4?'':'none'">查看文本分析结果</a>
   </div>
   <div [style.display]="textShow==3?'':'none'">
 

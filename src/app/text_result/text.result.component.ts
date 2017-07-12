@@ -2,24 +2,77 @@
  * Created by Administrator on 2017/7/5 0005.
  */
 import {Component} from '@angular/core'
+import {ActivatedRoute, Router} from "@angular/router";
+import {TextService} from "../common/services/text.service";
 declare var $: any;
 @Component({
   selector: 'text-result',
   styleUrls: ['./text.result.component.css'],
-  templateUrl: './text.result.component.html'
+  templateUrl: './text.result.component.html',
+  providers: [TextService]
 })
 export class TextResultComponent {
   s_selected_index: number = 0;
-
-  constructor() {
+  id:number;
+  wordAnalysis:any[]=[];
+  wordRatio:any[]=[];
+  entityRec:any[]=[];
+  infoExtract:any[]=[];
+  textCategory:any[]=[];
+  d_summary:string;
+  emotionalRec:any={};
+  semanticAss:any={};
+  constructor(private route: ActivatedRoute ,private router: Router,private textService: TextService) {
 
   }
 
   ngOnInit() {
     this.setSelectedScrollTop();
     this.windowScroll();
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+      console.log(this.id);
+      this.textService.getAllData(this.id)
+        .subscribe(result=>{
+            this.wordAnalysis=result.taggingAnalyses;
+            this.wordRatio = result.classifications;
+            this.entityRec = result.entityRecognitions;
+            this.d_summary = result.summaries[0].text;
+            this.textCategory = this.getTextCategory(result.taggingComponentRatio);
+            this.infoExtract = this.getInfoExtract(result.keywords);
+            this.emotionalRec = this.getEmotionalRec(result.sentiments);
+            this.semanticAss = this.getSemanticAss(result.semanticAssociation);
+        })
+    })
   }
-
+  getSemanticAss(array){
+    let nodes = array[0].nodes;
+    let edges = array[1].edges;
+    this.semanticAss.nodes = nodes;
+    this.semanticAss.edges = edges;
+    return this.semanticAss;
+  }
+  getEmotionalRec(array){
+      let neg = array[0].neg;
+      let pos = array[1].pos;
+      this.emotionalRec.neg = neg.toFixed(2);
+      this.emotionalRec.pos = pos.toFixed(2);
+    return this.emotionalRec;
+  }
+  getTextCategory(array){
+    for(let i in array){
+      let weight = (array[i].ratio*10).toFixed(3);
+      array[i].weight = weight;
+    }
+    return array;
+  }
+  getInfoExtract(array){
+    for(let i in array){
+      let weight = Math.floor(array[i].weight*100);
+      array[i].weight = weight;
+    }
+    return array;
+  }
   /* 监听浏览器滚动条位置 */
   windowScroll() {
     let $this = this;

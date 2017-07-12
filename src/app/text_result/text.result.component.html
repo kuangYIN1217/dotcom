@@ -12,28 +12,28 @@
   </nav>
   <div class="container padding-header result-content">
       <!-- 词性分析 -->
-      <ele-word-analysis></ele-word-analysis>
+      <ele-word-analysis [d_word_list] = "wordAnalysis"></ele-word-analysis>
 
       <!-- 词性构成比例 -->
-      <ele-word-ratio></ele-word-ratio>
+      <ele-word-ratio [d_word_list] = "wordRatio"></ele-word-ratio>
 
       <!-- 实体识别 -->
-      <ele-entity-recognition></ele-entity-recognition>
+      <ele-entity-recognition [d_word_list] = "entityRec"></ele-entity-recognition>
 
-      <!-- 自动摘要 -->
-      <ele-auto-summary></ele-auto-summary>
+      <!-- 自动摘要  -->
+      <ele-auto-summary [d_summary] = "d_summary"></ele-auto-summary>
 
       <!-- 信息提取 -->
-      <ele-info-extract></ele-info-extract>
+      <ele-info-extract [d_value] = "infoExtract"></ele-info-extract>
 
       <!-- 文本分类 -->
-      <ele-text-category></ele-text-category>
+      <ele-text-category [d_word_list] = "textCategory"></ele-text-category>
 
       <!-- 情感识别 -->
-      <ele-emotional-recognition></ele-emotional-recognition>
+      <ele-emotional-recognition [d_value] = "emotionalRec"></ele-emotional-recognition>
 
       <!-- 语义联想 -->
-      <ele-semantic-association></ele-semantic-association>
+      <ele-semantic-association [semantic] = "semanticAss"></ele-semantic-association>
 
   </div>
 

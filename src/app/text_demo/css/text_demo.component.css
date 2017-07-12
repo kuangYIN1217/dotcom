@@ -68,6 +68,8 @@ textarea::-moz-placeholder, textarea::-moz-placeholder {
   text-align: center;
   margin-top: -4px;
   cursor: pointer;
+  display: block;
+  text-decoration: none;
 }
 .ready{
   background: #b2b2b2;

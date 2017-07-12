@@ -3,7 +3,7 @@
  * Created by Administrator on 2017/7/6 0006.
  */
 
-import {Component} from '@angular/core'
+import {Component, Input} from '@angular/core'
 declare var echarts: any;
 @Component({
   selector: 'ele-text-category',
@@ -11,41 +11,11 @@ declare var echarts: any;
   templateUrl: './text.category.component.html'
 })
 export class TextCategoryComponent {
-  d_word_list: any =  [
-    {
-      code: 'a',
-      des: '财经',
-      ratio: 0.652
-    }, {
-      code: 'b',
-      des: '社会资讯',
-      ratio: 0.148
-    },  {
-      code: 'c',
-      des: '体育',
-      ratio: 0.1
-    },  {
-      code: 'd',
-      des: '娱乐',
-      ratio: 0.1
-    },{
-      code: 'a',
-      des: '财经',
-      ratio: 0.652
-    }, {
-      code: 'b',
-      des: '社会资讯',
-      ratio: 0.148
-    },  {
-      code: 'c',
-      des: '体育',
-      ratio: 0.1
-    },  {
-      code: 'd',
-      des: '娱乐',
-      ratio: 0.1
-    }
-  ];
+  @Input() d_word_list:any;
+  ngOnChanges(...args: any[]) {
+    //console.log(this.d_value);
+    this.initEcharts();
+  }
   ngOnInit() {
     this.initEcharts();
   }
