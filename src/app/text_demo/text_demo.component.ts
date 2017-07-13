@@ -22,7 +22,8 @@ export class TextDemoComponent {
   name:string;
   showArr:any[]=[];
   id:number;
-
+  fileId:number;
+  removeBtn:number;
   constructor(private textService: TextService,private router:Router) {
 /*    this.uploader.onAfterAddingAll = function (fileItems) {
       this.showArr = fileItems;
@@ -34,8 +35,8 @@ export class TextDemoComponent {
     itemAlias: "file",
   });
   selectedFileOnChanged(event:any){
-
     // 这里是文件选择完成后的操作处理
+        this.upload();
         for(let j in this.uploader.queue){
            let bool = this.isInArray(this.showArr,this.uploader.queue[j]);
            if(bool==false){
@@ -46,16 +47,14 @@ export class TextDemoComponent {
            }
         }
        // console.log(this.showArr);
-    /*     for(let i in this.uploader.queue){
-     if(this.uploader.queue[i].isUploaded){
-        continue;
-      }else{
-        this.uploader.queue[i].onBeforeUpload=()=>{
-          console.log(this.uploader.queue[i].file.name);
-        }
-        this.getProgress(i);
-      }
-    }*/
+  }
+
+    upload(){
+    if(this.uploader.queue.length==0){
+      this.uploadBtn=1;
+    }else if(this.uploader.queue.length>0){
+      this.uploadBtn=2;
+    }
   }
   isInArray(arr,value){
     for(var i = 0; i < arr.length; i++){
@@ -67,6 +66,7 @@ export class TextDemoComponent {
   }
   remove(i){
     this.showArr.splice(i,1);
+   //this.uploader.removeFromQueue(this.uploader.queue[i]);
     this.uploader.queue[i].remove();
   }
   fileOverBase(event) {
@@ -74,23 +74,7 @@ export class TextDemoComponent {
   }
   fileDropOver(event) {
     // 文件拖拽完成的回调函数
-    /*     for(let i in event){
-      if(parseInt(i)==NaN){
-        break;
-      }else{
-
-       for(let j in this.uploader.queue){
-          let type = this.uploader.queue[j].file.name.split('.').pop().toLowerCase();
-          if(event[i].name==this.uploader.queue[j].file.name){
-            if(type=='txt'||type=='doc'||type=='docx'||type=='pdf'){
-              this.getProgress(j);
-            }else{
-              this.uploader.queue[j].remove();
-            }
-          }
-        }
-      }
-    }*/
+    this.upload();
     for(let j in this.uploader.queue){
       let bool = this.isInArray(this.showArr,this.uploader.queue[j]);
       if(bool==false){
@@ -108,7 +92,6 @@ export class TextDemoComponent {
     }
   }
   getProgress(j){
-    if(this.uploader.queue[j]){
     this.uploader.queue[j].onProgress = (progress: number)=>{
       this.progress=0;
         this.uploader.queue[j].progress = progress;
@@ -118,14 +101,9 @@ export class TextDemoComponent {
           }, 300);
       }
     };
-/*    this.uploader.queue[j].onCancel = (response: string, status: number)=>{
-      this.uploader.queue[j].remove();
-    };*/
-    }
     this.uploader.queue[j].upload();
   }
   result(){
-    console.log(this.uploader.queue);
     for(let i in this.uploader.queue){
       this.sizeArr.push(this.uploader.queue[i].file.size);
       this.size+=this.uploader.queue[i].file.size;
@@ -137,6 +115,14 @@ export class TextDemoComponent {
       this.tip=1;
       return false;
     }
+    let content = "/home/ligang/dateset2/1499849080184text-analysis-api-2.0.txt,/home/ligang/dateset2/1499849080186工作周报_汪洋.txt";
+    this.uploadBtn=3;
+    this.textService.setFile(content)
+      .subscribe(result=>{
+        this.uploadBtn=4;
+        this.fileId = result;
+        console.log(this.fileId);
+      })
   }
   textStart(content){
     this.textBtn=3;
@@ -149,6 +135,9 @@ export class TextDemoComponent {
   }
   analysisResult(){
     this.router.navigate(['/text_result'],{queryParams: { id: this.id}});
+  }
+  analysisFile(){
+    this.router.navigate(['/text_result'],{queryParams: { id: this.fileId}});
   }
   cancel(){
     this.tip=0;

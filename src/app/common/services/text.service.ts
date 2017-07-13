@@ -26,8 +26,18 @@ export class TextService {
     headers.append('Authorization', this.getAuthorization());
     return headers;
   }
-  setText(content,type='text',appId=1,interfaceId=1,len=2000){
-    let path = "/api/uploadTextAnalysis?content="+content+"&type="+type+"&appId="+appId+"&interfaceId="+interfaceId+"&len="+len;
+  setText(content,type='text',appId=1,len=2000){
+    let path = "/api/TextAnalysis?content="+content+"&type="+type+"&appId="+appId+"&len="+len;
+    let headers = this.getHeaders();
+    return this.http.post(this.SERVER_URL+path, { headers : headers})
+      .map((response: Response) => {
+        if (response && response.json()) {
+          return response.json();
+        }
+      });
+  }
+  setFile(content,type='file',appId=1,len=2000){
+    let path = "/api/TextAnalysis?content="+content+"&type="+type+"&appId="+appId+"&len="+len;
     let headers = this.getHeaders();
     return this.http.post(this.SERVER_URL+path, { headers : headers})
       .map((response: Response) => {

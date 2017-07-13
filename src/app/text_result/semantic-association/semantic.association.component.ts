@@ -21,10 +21,8 @@ export class SemanticAssociationComponent {
   initEcharts() {
     /* 获取数据 */
     let json = this.semantic;
-    console.log(json);
-
-    if(json.nodes.map){
-
+    //console.log(json);
+    if(json.nodes){
     var myChart = echarts.init(document.querySelector('.echarts-semantic-association'));
     myChart.showLoading();
       myChart.hideLoading();

@@ -18,9 +18,14 @@ export class EmotionalRecognitionComponent {
     };
   }
   toPercent(point){
-  let str=Number(point*100).toFixed(1);
-  str+="%";
-  return str;
+    if(point==0||point==1){
+      return point;
+    }else{
+      let str=Number(point*100).toFixed(1);
+      str+="%";
+      return str;
+    }
+
 }
   ngOnChanges(...args: any[]) {
     this.getStyle(this.toPercent(this.d_value.pos));
