@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
   providers: [TextService]
 })
 export class TextDemoComponent {
+  SERVER_URL = SERVER_URL;
   textShow:number=1;
   textBtn:number=1;
   uploadBtn:number=1;

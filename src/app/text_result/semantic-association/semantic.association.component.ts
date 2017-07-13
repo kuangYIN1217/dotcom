@@ -13,7 +13,6 @@ declare var echarts: any;
 export class SemanticAssociationComponent {
   @Input() semantic:any;
   ngOnChanges(...args: any[]) {
-    console.log(this.semantic);
     this.initEcharts();
   }
   ngOnInit() {
@@ -22,6 +21,10 @@ export class SemanticAssociationComponent {
   initEcharts() {
     /* 获取数据 */
     let json = this.semantic;
+    console.log(json);
+
+    if(json.nodes.map){
+
     var myChart = echarts.init(document.querySelector('.echarts-semantic-association'));
     myChart.showLoading();
       myChart.hideLoading();
@@ -68,5 +71,6 @@ export class SemanticAssociationComponent {
           }
         ]
       }, true);
+  }
   }
 }

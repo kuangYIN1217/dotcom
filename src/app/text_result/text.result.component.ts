@@ -48,9 +48,10 @@ export class TextResultComponent {
   getSemanticAss(array){
     let nodes = array[0].nodes;
     let edges = array[1].edges;
-    this.semanticAss.nodes = nodes;
-    this.semanticAss.edges = edges;
-    return this.semanticAss;
+    let tempa:any={};
+     tempa.nodes = nodes;
+      tempa.edges = edges;
+    return tempa;
   }
   getEmotionalRec(array){
       let neg = array[0].neg;
