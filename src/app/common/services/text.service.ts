@@ -26,8 +26,8 @@ export class TextService {
     headers.append('Authorization', this.getAuthorization());
     return headers;
   }
-  setText(content,type='text',appId=1,len=2000){
-    let path = "/api/TextAnalysis?content="+content+"&type="+type+"&appId="+appId+"&len="+len;
+  setText(content,type='text',appId=1,len=2000,flow=1){
+    let path = "/api/TextAnalysis?content="+content+"&type="+type+"&appId="+appId+"&len="+len+"&flow="+flow;
     let headers = this.getHeaders();
     return this.http.post(this.SERVER_URL+path, { headers : headers})
       .map((response: Response) => {
@@ -36,8 +36,8 @@ export class TextService {
         }
       });
   }
-  setFile(content,type='file',appId=1,len=2000){
-    let path = "/api/TextAnalysis?content="+content+"&type="+type+"&appId="+appId+"&len="+len;
+  setFile(content,type,appId,len,flow){
+    let path = "/api/TextAnalysis?content="+content+"&type="+type+"&appId="+appId+"&len="+len+"&flow="+flow;
     let headers = this.getHeaders();
     return this.http.post(this.SERVER_URL+path, { headers : headers})
       .map((response: Response) => {
@@ -47,7 +47,7 @@ export class TextService {
       });
   }
   getAllData(id:number){
-    let path = "/api/scanAllResult/"+id;
+    let path = "/api/scan//scanAllResult/"+id;
     let headers = this.getHeaders();
     return this.http.get(this.SERVER_URL+path, { headers : headers})
       .map((response: Response) => {

@@ -35,10 +35,10 @@ export class TextResultComponent {
       this.textService.getAllData(this.id)
         .subscribe(result=>{
             this.wordAnalysis=result.taggingAnalyses;
-            this.wordRatio = result.classifications;
+            this.wordRatio = result.taggingComponentRatio;
             this.entityRec = result.entityRecognitions;
             this.d_summary = result.summaries[0].text;
-            this.textCategory = this.getTextCategory(result.taggingComponentRatio);
+            this.textCategory = this.getTextCategory(result.classifications);
             this.infoExtract = this.getInfoExtract(result.keywords);
             this.emotionalRec = this.getEmotionalRec(result.sentiments);
             this.semanticAss = this.getSemanticAss(result.semanticAssociation);
@@ -50,15 +50,16 @@ export class TextResultComponent {
     let edges = array[1].edges;
     let tempa:any={};
      tempa.nodes = nodes;
-      tempa.edges = edges;
+     tempa.edges = edges;
     return tempa;
   }
   getEmotionalRec(array){
       let neg = array[0].neg;
       let pos = array[1].pos;
-      this.emotionalRec.neg = neg.toFixed(2);
-      this.emotionalRec.pos = pos.toFixed(2);
-    return this.emotionalRec;
+      let tem:any={};
+      tem.neg = neg.toFixed(2);
+      tem.pos = pos.toFixed(2);
+    return tem;
   }
   getTextCategory(array){
     for(let i in array){

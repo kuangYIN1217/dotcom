@@ -13,22 +13,28 @@ export class EmotionalRecognitionComponent {
   @Input() d_value:any;
   getStyle (value) {
     return {
-      'flex': '0 0 value',
-      'width': 'value'
+      'flex': '0 0 '+value,
+      'width': value
     };
   }
   toPercent(point){
     if(point==0||point==1){
+      console.log(point);
       return point;
     }else{
-      let str=Number(point*100).toFixed(1);
-      str+="%";
+      let str=point*100;
       return str;
     }
 
 }
   ngOnChanges(...args: any[]) {
-    this.getStyle(this.toPercent(this.d_value.pos));
+    console.log(this.d_value.pos);
+    if(this.d_value.pos){
+      this.getStyle(this.toPercent(this.d_value.pos));
+    }else{
+      console.log(123);
+    }
+
   }
   ngOnInit() {
 

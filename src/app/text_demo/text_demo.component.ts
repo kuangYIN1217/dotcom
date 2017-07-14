@@ -23,19 +23,24 @@ export class TextDemoComponent {
   showArr:any[]=[];
   id:number;
   fileId:number;
-  removeBtn:number;
+  removeBtn:number=2;
+  content:string;
+  resultArr:any[]=[];
+  allFlow:number=0;
+  flow:string;
   constructor(private textService: TextService,private router:Router) {
-/*    this.uploader.onAfterAddingAll = function (fileItems) {
-      this.showArr = fileItems;
-    }*/
+    // this.uploader.onAfterAddingAll = function (fileItems) {
+    //   console.log(this.fileItems);
+    // }
   }
   public uploader:FileUploader = new FileUploader({
-    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+    url: SERVER_URL+"/api/Files/uploadFile?appId=1",
     method: "POST",
     itemAlias: "file",
   });
   selectedFileOnChanged(event:any){
     // 这里是文件选择完成后的操作处理
+    console.log(this.uploader.queue.length);
         this.upload();
         for(let j in this.uploader.queue){
            let bool = this.isInArray(this.showArr,this.uploader.queue[j]);
@@ -92,6 +97,7 @@ export class TextDemoComponent {
     }
   }
   getProgress(j){
+    console.log(j);
     this.uploader.queue[j].onProgress = (progress: number)=>{
       this.progress=0;
         this.uploader.queue[j].progress = progress;
@@ -101,9 +107,25 @@ export class TextDemoComponent {
           }, 300);
       }
     };
+    this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
+      //console.log(this.uploader.queue.length);
+      console.log(response);
+      this.resultArr.push(JSON.parse(response).content);
+      console.log(JSON.parse(response).flow);
+      this.allFlow=this.allFlow+JSON.parse(response).flow;
+      console.log(this.allFlow);
+      let b = this.resultArr.join(',');
+      if(j==this.uploader.queue.length-1){
+        this.removeBtn=1;
+        this.content = b;
+        this.flow = this.allFlow.toString();
+
+      }
+    };
     this.uploader.queue[j].upload();
   }
   result(){
+    this.removeBtn=3;
     for(let i in this.uploader.queue){
       this.sizeArr.push(this.uploader.queue[i].file.size);
       this.size+=this.uploader.queue[i].file.size;
@@ -115,13 +137,11 @@ export class TextDemoComponent {
       this.tip=1;
       return false;
     }
-    let content = "/home/ligang/dateset2/1499849080184text-analysis-api-2.0.txt,/home/ligang/dateset2/1499849080186工作周报_汪洋.txt";
     this.uploadBtn=3;
-    this.textService.setFile(content)
+    this.textService.setFile(this.content,'file',1,2000,this.flow)
       .subscribe(result=>{
         this.uploadBtn=4;
         this.fileId = result;
-        console.log(this.fileId);
       })
   }
   textStart(content){
