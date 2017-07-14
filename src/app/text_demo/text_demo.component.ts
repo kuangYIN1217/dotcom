@@ -40,7 +40,7 @@ export class TextDemoComponent {
   });
   selectedFileOnChanged(event:any){
     // 这里是文件选择完成后的操作处理
-    console.log(this.uploader.queue.length);
+    //console.log(this.uploader.queue.length);
         this.upload();
         for(let j in this.uploader.queue){
            let bool = this.isInArray(this.showArr,this.uploader.queue[j]);
@@ -97,7 +97,7 @@ export class TextDemoComponent {
     }
   }
   getProgress(j){
-    console.log(j);
+    //console.log(j);
     this.uploader.queue[j].onProgress = (progress: number)=>{
       this.progress=0;
         this.uploader.queue[j].progress = progress;
@@ -109,11 +109,11 @@ export class TextDemoComponent {
     };
     this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
       //console.log(this.uploader.queue.length);
-      console.log(response);
+      //console.log(response);
       this.resultArr.push(JSON.parse(response).content);
-      console.log(JSON.parse(response).flow);
+      //console.log(JSON.parse(response).flow);
       this.allFlow=this.allFlow+JSON.parse(response).flow;
-      console.log(this.allFlow);
+      //console.log(this.allFlow);
       let b = this.resultArr.join(',');
       if(j==this.uploader.queue.length-1){
         this.removeBtn=1;
@@ -150,7 +150,7 @@ export class TextDemoComponent {
       .subscribe(result=>{
         this.id = result;
         this.textBtn=4;
-        console.log(this.id);
+        //console.log(this.id);
       });
   }
   analysisResult(){

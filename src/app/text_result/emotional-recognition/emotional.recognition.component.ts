@@ -21,7 +21,6 @@ export class EmotionalRecognitionComponent {
   }
   toPercent(point){
     if(point==0||point==1){
-      console.log(point);
       return point;
     }else{
       let str=point*100+"%";
@@ -30,7 +29,6 @@ export class EmotionalRecognitionComponent {
 
 }
   ngOnChanges(...args: any[]) {
-    console.log(this.d_value.pos);
     if(this.d_value.pos){
       this.percent = this.toPercent(this.d_value.pos);
     }
