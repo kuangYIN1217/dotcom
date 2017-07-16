@@ -28,6 +28,9 @@ export class TextDemoComponent {
   allFlow:number=0;
   flow:string;
   removeBtn:number=1;
+  errorPaths:any[]=[];
+  error:string;
+  fileError:number=0;
   constructor(private textService: TextService,private router:Router) {
 
   }
@@ -68,6 +71,12 @@ export class TextDemoComponent {
     return false;
   }
   remove(i){
+     for(let j in this.errorPaths){
+       if(this.showArr[i].file.name==this.errorPaths[j]){
+         this.errorPaths.splice(Number(j),1);
+       }
+     console.log(this.showArr[i].file.name);
+   }
     this.showArr.splice(i,1);
    //this.uploader.removeFromQueue(this.uploader.queue[i]);
     this.uploader.queue[i].remove();
@@ -108,18 +117,22 @@ export class TextDemoComponent {
         }
       };
       this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
+        if(JSON.parse(response).errorPaths){
+          this.errorPaths.push(JSON.parse(response).errorPaths);
+        }
         this.resultArr.push(JSON.parse(response).content);
         this.allFlow=this.allFlow+JSON.parse(response).flow;
         let b = this.resultArr.join(',');
+        let c = this.errorPaths.join(',');
         if(j==this.uploader.queue.length-1){
           this.content = b;
+          this.error = c;
           this.flow = this.allFlow.toString();
         }
       };
-      this.uploader.uploadAll();
-      //this.uploader.queue[j].upload();
+      //this.uploader.uploadAll();
+      this.uploader.queue[j].upload();
     }
-
   }
   result(){
     for(let i in this.uploader.queue){
@@ -135,11 +148,19 @@ export class TextDemoComponent {
     }
     this.uploadBtn=3;
     this.removeBtn=2;
-    this.textService.setFile(this.content,'file',1,2000,this.flow)
-      .subscribe(result=>{
-        this.uploadBtn=4;
-        this.fileId = result;
-      })
+    console.log(this.error);
+    if(this.errorPaths.length>0){
+      this.fileError = 1;
+      this.removeBtn=1;
+      this.uploadBtn=2;
+    }else{
+      this.textService.setFile(this.content,'file',1,2000,this.flow)
+        .subscribe(result=>{
+          this.uploadBtn=4;
+          this.fileId = result;
+        })
+    }
+
   }
   textStart(content){
     this.textBtn=3;
@@ -158,6 +179,7 @@ export class TextDemoComponent {
   }
   cancel(){
     this.tip=0;
+    this.fileError=0;
   }
   textChange(){
     if(this.txtValue){
