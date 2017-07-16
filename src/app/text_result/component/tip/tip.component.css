@@ -20,6 +20,6 @@
   transition: 0.1s all linear 0s;
   cursor: default;
 }
-.tip:hover {
+/*.tip:hover {
   box-shadow: 0 0 7px rgba(0,0,0,0.6);
-}
+}*/

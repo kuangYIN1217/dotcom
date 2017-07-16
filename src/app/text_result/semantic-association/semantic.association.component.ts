@@ -38,13 +38,14 @@ export class SemanticAssociationComponent {
               if (node.symbolSize === 40) {
                 node.itemStyle = {
                   normal: {
-                    color: '#71d3cf'
+                    color: '#71d3cf',
                   }
                 }
               } else {
                 node.itemStyle = {
                   normal: {
-                    color: '#ffb680'
+                    color: '#ffb680',
+
                   }
                 }
               }
@@ -54,7 +55,7 @@ export class SemanticAssociationComponent {
             label: {
               normal: {
                 show: true,
-                position: 'right'
+                position: 'right',
               }
             },
             force: {

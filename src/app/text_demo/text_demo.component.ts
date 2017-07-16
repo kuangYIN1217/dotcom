@@ -23,15 +23,13 @@ export class TextDemoComponent {
   showArr:any[]=[];
   id:number;
   fileId:number;
-  removeBtn:number=2;
   content:string;
   resultArr:any[]=[];
   allFlow:number=0;
   flow:string;
+  removeBtn:number=1;
   constructor(private textService: TextService,private router:Router) {
-    // this.uploader.onAfterAddingAll = function (fileItems) {
-    //   console.log(this.fileItems);
-    // }
+
   }
   public uploader:FileUploader = new FileUploader({
     url: SERVER_URL+"/api/Files/uploadFile?appId=1",
@@ -97,35 +95,33 @@ export class TextDemoComponent {
     }
   }
   getProgress(j){
-    //console.log(j);
-    this.uploader.queue[j].onProgress = (progress: number)=>{
-      this.progress=0;
+    if(j>9){
+      this.remove(j);
+    }else{
+      this.uploader.queue[j].onProgress = (progress: number)=>{
+        this.progress=0;
         this.uploader.queue[j].progress = progress;
         if(this.uploader.queue[j].progress==100){
           setTimeout(()=>{
             this.uploader.queue[j].headers.flag=1;
           }, 300);
-      }
-    };
-    this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
-      //console.log(this.uploader.queue.length);
-      //console.log(response);
-      this.resultArr.push(JSON.parse(response).content);
-      //console.log(JSON.parse(response).flow);
-      this.allFlow=this.allFlow+JSON.parse(response).flow;
-      //console.log(this.allFlow);
-      let b = this.resultArr.join(',');
-      if(j==this.uploader.queue.length-1){
-        this.removeBtn=1;
-        this.content = b;
-        this.flow = this.allFlow.toString();
+        }
+      };
+      this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
+        this.resultArr.push(JSON.parse(response).content);
+        this.allFlow=this.allFlow+JSON.parse(response).flow;
+        let b = this.resultArr.join(',');
+        if(j==this.uploader.queue.length-1){
+          this.content = b;
+          this.flow = this.allFlow.toString();
+        }
+      };
+      this.uploader.uploadAll();
+      //this.uploader.queue[j].upload();
+    }
 
-      }
-    };
-    this.uploader.queue[j].upload();
   }
   result(){
-    this.removeBtn=3;
     for(let i in this.uploader.queue){
       this.sizeArr.push(this.uploader.queue[i].file.size);
       this.size+=this.uploader.queue[i].file.size;
@@ -138,6 +134,7 @@ export class TextDemoComponent {
       return false;
     }
     this.uploadBtn=3;
+    this.removeBtn=2;
     this.textService.setFile(this.content,'file',1,2000,this.flow)
       .subscribe(result=>{
         this.uploadBtn=4;
