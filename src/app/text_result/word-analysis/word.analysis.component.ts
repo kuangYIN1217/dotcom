@@ -9,7 +9,7 @@ import {Component, Input} from '@angular/core'
   templateUrl: './word.analysis.component.html'
 })
 export class WordAnalysisComponent {
-  s_selected_all: boolean = false;
+  s_selected_all: boolean = true;
   @Input() d_word_list: any ;
 
   ngOnChanges(...args: any[]) {
