@@ -16,7 +16,7 @@
       <table class="uploadShow" *ngIf="showArr.length>0">
         <tr *ngFor="let item of showArr;let i =index" class="uploadTr" [ngClass]="{border: item.headers.flag==1}">
           <td class="uploadTxt paddingLeft"><img src="../assets/text_input/unupload.png" class="imgMiddle right" *ngIf="item.progress==0"/><img src="../assets/text_input/upload.png" class="imgMiddle right"  *ngIf="item.progress!=100&&(item.progress!=0)"/>{{item.file.name}}<span *ngIf="(item.file.size/1024)>=1024">（{{item.file.size/1024/1024|number:'1.2-2'}}）MB</span><span *ngIf="(item.file.size/1024)<1024">（{{item.file.size/1024|number:'1.2-2'}}）KB</span></td>
-          <td class="uploadImg paddingRight"><img src="../assets/text_input/delete.png" class="imgMiddle" (click)="remove(i)" [style.display]="removeBtn==1?'':'none'"/><img src="../assets/text_input/delete.png" class="imgMiddle"  [style.display]="removeBtn==2?'':'none'"/></td>
+          <td class="uploadImg paddingRight"><img src="../assets/text_input/delete.png" class="imgMiddle" (click)="remove(i)" [style.display]="removeBtn==1?'':'none'"/></td>
           <div class="progressouter" *ngIf="item.headers.flag==0||(!item.headers.flag)">
             <span>{{item.progress}}%</span>
             <div class="progressinner" [ngStyle]="{width: item.progress + '%'}"></div>
@@ -25,7 +25,7 @@
       </table>
       <div class="inputContent inputContentNo" [ngClass]="{inputContentYes: uploader.queue.length>0}" ng2FileDrop [ngClass]="{dropping: isDropZoneOver}" (fileOver)="fileOverBase($event)" (onFileDrop)="fileDropOver($event)" [uploader]="uploader">
         <span onclick="document.getElementById('file').click()">上传文件（可拖拽）</span>
-        <input type="file" multiple id="file" name="file" ng2FileSelect [uploader]="uploader" accept="text/plain,application/msword,application/pdf" (change)="selectedFileOnChanged($event)"/>
+        <input type="file" multiple id="file" name="file" ng2FileSelect [uploader]="uploader" accept=".doc,.docx,.txt,.pdf" (change)="selectedFileOnChanged($event)"/>
         <p>支持txt/doc/docx/pdf格式文件，建议总文件数10个以内</p>
       </div>
     </div>
@@ -36,6 +36,20 @@
   </div>
   <div [style.display]="textShow==3?'':'none'">
 
+  </div>
+  <div class="dialog" [style.display]="fileError==1?'':'none'">
+    <div class="dialogContainer addDialogContainer">
+      <div class="dialogHeader">
+        <span>系统提示</span>
+      </div>
+      <div class="dialogContent" style="text-align: center">
+        <img src="../assets/text_input//warning.png" class="imgMiddle"/>
+        <span class="imgMiddle" style="padding-left: 10px">{{error}}文件错误！</span>
+      </div>
+      <div class="delSys">
+        <a href="javascript:void(0)" class="diabtn" (click)="cancel()">确定</a>
+      </div>
+    </div>
   </div>
   <div class="dialog" [style.display]="tip==1?'':'none'">
     <div class="dialogContainer addDialogContainer">

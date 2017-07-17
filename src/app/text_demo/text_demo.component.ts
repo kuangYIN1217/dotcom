@@ -23,15 +23,16 @@ export class TextDemoComponent {
   showArr:any[]=[];
   id:number;
   fileId:number;
-  removeBtn:number=2;
   content:string;
   resultArr:any[]=[];
   allFlow:number=0;
   flow:string;
+  removeBtn:number=1;
+  errorPaths:any[]=[];
+  error:string;
+  fileError:number=0;
   constructor(private textService: TextService,private router:Router) {
-    // this.uploader.onAfterAddingAll = function (fileItems) {
-    //   console.log(this.fileItems);
-    // }
+
   }
   public uploader:FileUploader = new FileUploader({
     url: SERVER_URL+"/api/Files/uploadFile?appId=1",
@@ -40,7 +41,7 @@ export class TextDemoComponent {
   });
   selectedFileOnChanged(event:any){
     // 这里是文件选择完成后的操作处理
-    console.log(this.uploader.queue.length);
+    //console.log(this.uploader.queue.length);
         this.upload();
         for(let j in this.uploader.queue){
            let bool = this.isInArray(this.showArr,this.uploader.queue[j]);
@@ -70,6 +71,12 @@ export class TextDemoComponent {
     return false;
   }
   remove(i){
+     for(let j in this.errorPaths){
+       if(this.showArr[i].file.name==this.errorPaths[j]){
+         this.errorPaths.splice(Number(j),1);
+       }
+     console.log(this.showArr[i].file.name);
+   }
     this.showArr.splice(i,1);
    //this.uploader.removeFromQueue(this.uploader.queue[i]);
     this.uploader.queue[i].remove();
@@ -97,35 +104,37 @@ export class TextDemoComponent {
     }
   }
   getProgress(j){
-    console.log(j);
-    this.uploader.queue[j].onProgress = (progress: number)=>{
-      this.progress=0;
+    if(j>9){
+      this.remove(j);
+    }else{
+      this.uploader.queue[j].onProgress = (progress: number)=>{
+        this.progress=0;
         this.uploader.queue[j].progress = progress;
         if(this.uploader.queue[j].progress==100){
           setTimeout(()=>{
             this.uploader.queue[j].headers.flag=1;
           }, 300);
-      }
-    };
-    this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
-      //console.log(this.uploader.queue.length);
-      console.log(response);
-      this.resultArr.push(JSON.parse(response).content);
-      console.log(JSON.parse(response).flow);
-      this.allFlow=this.allFlow+JSON.parse(response).flow;
-      console.log(this.allFlow);
-      let b = this.resultArr.join(',');
-      if(j==this.uploader.queue.length-1){
-        this.removeBtn=1;
-        this.content = b;
-        this.flow = this.allFlow.toString();
-
-      }
-    };
-    this.uploader.queue[j].upload();
+        }
+      };
+      this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
+        if(JSON.parse(response).errorPaths){
+          this.errorPaths.push(JSON.parse(response).errorPaths);
+        }
+        this.resultArr.push(JSON.parse(response).content);
+        this.allFlow=this.allFlow+JSON.parse(response).flow;
+        let b = this.resultArr.join(',');
+        let c = this.errorPaths.join(',');
+        if(j==this.uploader.queue.length-1){
+          this.content = b;
+          this.error = c;
+          this.flow = this.allFlow.toString();
+        }
+      };
+      //this.uploader.uploadAll();
+      this.uploader.queue[j].upload();
+    }
   }
   result(){
-    this.removeBtn=3;
     for(let i in this.uploader.queue){
       this.sizeArr.push(this.uploader.queue[i].file.size);
       this.size+=this.uploader.queue[i].file.size;
@@ -138,11 +147,20 @@ export class TextDemoComponent {
       return false;
     }
     this.uploadBtn=3;
-    this.textService.setFile(this.content,'file',1,2000,this.flow)
-      .subscribe(result=>{
-        this.uploadBtn=4;
-        this.fileId = result;
-      })
+    this.removeBtn=2;
+    console.log(this.error);
+    if(this.errorPaths.length>0){
+      this.fileError = 1;
+      this.removeBtn=1;
+      this.uploadBtn=2;
+    }else{
+      this.textService.setFile(this.content,'file',1,2000,this.flow)
+        .subscribe(result=>{
+          this.uploadBtn=4;
+          this.fileId = result;
+        })
+    }
+
   }
   textStart(content){
     this.textBtn=3;
@@ -150,7 +168,7 @@ export class TextDemoComponent {
       .subscribe(result=>{
         this.id = result;
         this.textBtn=4;
-        console.log(this.id);
+        //console.log(this.id);
       });
   }
   analysisResult(){
@@ -161,6 +179,7 @@ export class TextDemoComponent {
   }
   cancel(){
     this.tip=0;
+    this.fileError=0;
   }
   textChange(){
     if(this.txtValue){

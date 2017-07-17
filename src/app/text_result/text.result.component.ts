@@ -31,7 +31,7 @@ export class TextResultComponent {
     this.windowScroll();
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
-      console.log(this.id);
+      //console.log(this.id);
       this.textService.getAllData(this.id)
         .subscribe(result=>{
             this.wordAnalysis=result.taggingAnalyses;
