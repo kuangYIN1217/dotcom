@@ -42,19 +42,19 @@ export class WordRatioComponent {
     myChart.setOption( {
       tooltip : {
         trigger: 'item',
-        formatter: "{a} <br/>{b} : {d}%"
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
       },
       legend: {
         orient: 'vertical',
-        left: 'left',
+        x: 'left',
+        //data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
         data: legend_data
       },
       series : [
         {
           name: '词性比例',
           type: 'pie',
-          radius : '55%',
-          center: ['50%', '55%'],
+          radius: ['50%', '70%'],
           data: series_data
         }
       ]
