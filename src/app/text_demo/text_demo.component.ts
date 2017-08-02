@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FileUploader} from "ng2-file-upload";
+import {FileItem, FileUploader} from "ng2-file-upload";
 import {TextService} from "../common/services/text.service";
 import {SERVER_URL} from "../app.constants";
 import {Router} from "@angular/router";
@@ -31,8 +31,9 @@ export class TextDemoComponent {
   errorPaths:any[]=[];
   error:string;
   fileError:number=0;
+  k:number=0;
+  deleteArr:any[]=[];
   constructor(private textService: TextService,private router:Router) {
-
   }
   public uploader:FileUploader = new FileUploader({
     url: SERVER_URL+"/api/Files/uploadFile?appId=1",
@@ -42,23 +43,25 @@ export class TextDemoComponent {
   selectedFileOnChanged(event:any){
     // 这里是文件选择完成后的操作处理
     //console.log(this.uploader.queue.length);
-        this.upload();
-        for(let j in this.uploader.queue){
+
+    //this.deleteItem();
+    for(let j in this.uploader.queue){
            let bool = this.isInArray(this.showArr,this.uploader.queue[j]);
-           if(bool==false){
+          if(bool==false){
              this.showArr.push(this.uploader.queue[j]);
              this.getProgress(j);
-           }else{
-             continue;
+             //this.getSuccess(j);
+          }else{
+            continue;
            }
         }
+    this.upload();
        // console.log(this.showArr);
   }
-
     upload(){
-    if(this.uploader.queue.length==0){
+    if(this.showArr.length==0){
       this.uploadBtn=1;
-    }else if(this.uploader.queue.length>0){
+    }else if(this.showArr.length>0){
       this.uploadBtn=2;
     }
   }
@@ -71,50 +74,165 @@ export class TextDemoComponent {
     return false;
   }
   remove(i){
-     for(let j in this.errorPaths){
-       if(this.showArr[i].file.name==this.errorPaths[j]){
-         this.errorPaths.splice(Number(j),1);
-       }
-     console.log(this.showArr[i].file.name);
-   }
     this.showArr.splice(i,1);
-   //this.uploader.removeFromQueue(this.uploader.queue[i]);
-    this.uploader.queue[i].remove();
+    //this.deleteArr.splice(i,1);
+    for(let j in this.errorPaths){
+        if(this.showArr[i].file.name==this.errorPaths[j]){
+          this.errorPaths.splice(Number(j),1);
+        }
+        console.log(this.showArr[i].file.name);
+      }
+      //this.uploader.queue[i].remove();
+      if(this.uploader.queue[i].isUploading){
+        this.uploader.queue[i].cancel();
+        this.uploader.queue[i].remove();
+      }else{
+        this.uploader.queue[i].remove();
+      }
+
+      //this.deleteArr.push(this.uploader.queue[i]);
+      if(this.showArr.length==0){
+        this.uploadBtn=1;
+      }
   }
   fileOverBase(event) {
     // 拖拽状态改变的回调函数
   }
   fileDropOver(event) {
     // 文件拖拽完成的回调函数
-    this.upload();
-    for(let j in this.uploader.queue){
-      let bool = this.isInArray(this.showArr,this.uploader.queue[j]);
-      if(bool==false){
-        this.showArr.push(this.uploader.queue[j]);
-        let type = this.showArr[j].file.name.split('.').pop().toLowerCase();
-        if (type == 'txt' || type == 'doc' || type == 'docx' || type == 'pdf') {
-          this.getProgress(j);
-        } else {
-          this.showArr.splice(Number(j),1);
-          this.uploader.queue[j].remove();
-        }
-      }else{
-        continue;
+    //this.deleteItem();
+
+/*    this.uploader.onAfterAddingAll=(fileItems: any)=>{
+      //this.deleteArr=fileItems;
+      for(let i in fileItems){
+        this.showArr.push(fileItems[i]);
+        //this.deleteArr.push(fileItems[i]);
       }
+      console.log(this.showArr);
+      //this.getProgress();
+      //this.getSuccess();
+    }*/
+    for(let j in this.uploader.queue){
+      if(Number(j)>9){
+        return
+      }else{
+        let bool = this.isInArray(this.showArr,this.uploader.queue[j]);
+        if(bool==false){
+          this.showArr.push(this.uploader.queue[j]);
+          let type = this.showArr[j].file.name.split('.').pop().toLowerCase();
+          if (type == 'txt' || type == 'doc' || type == 'docx' || type == 'pdf') {
+            this.getProgress(j);
+          } else {
+            this.showArr.splice(Number(j),1);
+            this.uploader.queue[j].remove();
+          }
+        }else{
+          continue;
+        }
+      }
+      console.log(this.uploader.queue);
+    }
+    this.upload();
+  }
+/*  contains(arr, obj) {
+  var i = arr.length;
+  while (i--) {
+    if (arr[i] === obj) {
+      return true;
     }
   }
+  return false;
+}*/
+getSuccess(j){
+    this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
+      //console.log(response);
+      if(JSON.parse(response).errorPaths){
+        this.errorPaths.push(JSON.parse(response).errorPaths);
+      }
+      this.resultArr.push(JSON.parse(response).content);
+      this.allFlow=this.allFlow+JSON.parse(response).flow;
+      let b = this.resultArr.join(',');
+      let c = this.errorPaths.join(',');
+      if(j==this.uploader.queue.length-1){
+        this.content = b;
+        this.error = c;
+        this.flow = this.allFlow.toString();
+      }
+  }
+}
+/*  getProgress(){
+      this.uploader.uploadAll();
+      this.uploader.onProgressItem=(fileItem: FileItem, progress: any)=>{
+      //console.log(fileItem);
+      if(progress==100){
+        setTimeout(()=>{
+          fileItem.headers.flag=1;
+        }, 300);
+      }
+      //console.log(progress);
+    };
+      console.log(this.uploader.queue);
+
+ /!*     let bool = this.contains(this.uploader.queue,item);
+      if(bool===false){
+       console.log(this.uploader.queue.indexOf(item));
+      }*!/
+/!*      if(JSON.parse(response).errorPaths){
+        this.errorPaths.push(JSON.parse(response).errorPaths);
+      }
+      this.resultArr.push(JSON.parse(response).content);
+      this.allFlow=this.allFlow+JSON.parse(response).flow;
+      let b = this.resultArr.join(',');
+      let c = this.errorPaths.join(',');
+      if(this.uploader.queue.length-1){
+        this.content = b;
+        this.error = c;
+        this.flow = this.allFlow.toString();
+      }*!/
+/!*      for(let j in this.uploader.queue){
+        this.uploader.queue[j].onProgress = (progress: number)=>{
+          this.progress=0;
+          this.uploader.queue[j].progress = progress;
+          if(this.uploader.queue[j].progress==100){
+            setTimeout(()=>{
+              this.uploader.queue[j].headers.flag=1;
+            }, 300);
+          }
+        };
+        this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
+          if(JSON.parse(response).errorPaths){
+            this.errorPaths.push(JSON.parse(response).errorPaths);
+          }
+          this.resultArr.push(JSON.parse(response).content);
+          this.allFlow=this.allFlow+JSON.parse(response).flow;
+          let b = this.resultArr.join(',');
+          let c = this.errorPaths.join(',');
+          if(Number(j)==this.uploader.queue.length-1){
+            this.content = b;
+            this.error = c;
+            this.flow = this.allFlow.toString();
+          }
+        };
+      }*!/
+  }*/
   getProgress(j){
     if(j>9){
-      this.remove(j);
+      this.showArr.splice(10,1);
+      return
     }else{
-      this.uploader.queue[j].onProgress = (progress: number)=>{
+      this.uploader.onProgressItem=(fileItem: FileItem, progress: any)=>{
         this.progress=0;
-        this.uploader.queue[j].progress = progress;
+        if(progress==100){
+          setTimeout(()=>{
+            fileItem.headers.flag=1;
+          }, 300);
+        }
+/*        this.uploader.queue[j].progress = progress;
         if(this.uploader.queue[j].progress==100){
           setTimeout(()=>{
             this.uploader.queue[j].headers.flag=1;
           }, 300);
-        }
+        }*/
       };
       this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
         if(JSON.parse(response).errorPaths){
@@ -124,7 +242,9 @@ export class TextDemoComponent {
         this.allFlow=this.allFlow+JSON.parse(response).flow;
         let b = this.resultArr.join(',');
         let c = this.errorPaths.join(',');
-        if(j==this.uploader.queue.length-1){
+        console.log(this.uploader.queue.length);
+        console.log(j);
+        if(j==this.uploader.queue.length){
           this.content = b;
           this.error = c;
           this.flow = this.allFlow.toString();
@@ -134,12 +254,30 @@ export class TextDemoComponent {
       this.uploader.queue[j].upload();
     }
   }
-  result(){
+  deleteItem(){
+    for(let i in this.deleteArr){
+      this.isNone(this.deleteArr[i]);
+    }
+  }
+isNone(item){
     for(let i in this.uploader.queue){
-      this.sizeArr.push(this.uploader.queue[i].file.size);
-      this.size+=this.uploader.queue[i].file.size;
-      if(this.uploader.queue[i].progress!=100){
+      if(item.file.name==this.uploader.queue[i].file.name){
         this.uploader.queue[i].remove();
+        return
+      }
+    }
+}
+  result(){
+    //this.deleteItem();
+    for(let i in this.uploader.queue){
+      if(Number(i)>9){
+        continue
+      }else{
+        this.sizeArr.push(this.uploader.queue[i].file.size);
+        this.size+=this.uploader.queue[i].file.size;
+        if(this.uploader.queue[i].progress!=100){
+          this.uploader.queue[i].remove();
+        }
       }
     }
     if((this.size/1024/1024)>50){

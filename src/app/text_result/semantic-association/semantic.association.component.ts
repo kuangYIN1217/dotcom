@@ -45,7 +45,6 @@ export class SemanticAssociationComponent {
                 node.itemStyle = {
                   normal: {
                     color: '#ffb680',
-
                   }
                 }
               }

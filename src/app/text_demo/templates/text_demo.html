@@ -25,12 +25,12 @@
       </table>
       <div class="inputContent inputContentNo" [ngClass]="{inputContentYes: uploader.queue.length>0}" ng2FileDrop [ngClass]="{dropping: isDropZoneOver}" (fileOver)="fileOverBase($event)" (onFileDrop)="fileDropOver($event)" [uploader]="uploader">
         <span onclick="document.getElementById('file').click()">上传文件（可拖拽）</span>
-        <input type="file" multiple id="file" name="file" ng2FileSelect [uploader]="uploader" accept=".doc,.docx,.txt,.pdf" (change)="selectedFileOnChanged($event)"/>
+        <input type="file" multiple id="file" name="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
         <p>支持txt/doc/docx/pdf格式文件，建议总文件数10个以内</p>
       </div>
     </div>
-    <a class="btn ready" *ngIf="uploader.queue.length==0" [style.display]="uploadBtn==1?'':'none'">开始文本分析</a>
-    <a class="btn start" *ngIf="uploader.queue.length>0" (click)="result()" [style.display]="uploadBtn==2?'':'none'">开始文本分析</a>
+    <a class="btn ready" *ngIf="showArr.length==0">开始文本分析</a>
+    <a class="btn start" *ngIf="showArr.length>0" (click)="result()" [style.display]="uploadBtn==2?'':'none'">开始文本分析</a>
     <a class="btn ongoing" [style.display]="uploadBtn==3?'':'none'">文本分析中...</a>
     <a class="btn end" [style.display]="uploadBtn==4?'':'none'" (click)="analysisFile()" routerLinkActive="active" routerLink="/text_result" >查看文本分析结果</a>
   </div>
