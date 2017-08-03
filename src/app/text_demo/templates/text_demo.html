@@ -25,7 +25,7 @@
       </table>
       <div class="inputContent inputContentNo" [ngClass]="{inputContentYes: uploader.queue.length>0}" ng2FileDrop [ngClass]="{dropping: isDropZoneOver}" (fileOver)="fileOverBase($event)" (onFileDrop)="fileDropOver($event)" [uploader]="uploader">
         <span onclick="document.getElementById('file').click()">上传文件（可拖拽）</span>
-        <input type="file" multiple id="file" name="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+        <input type="file" multiple id="file" name="file" ng2FileSelect [uploader]="uploader" accept=".txt,.pdf,.doc,.docx" (change)="selectedFileOnChanged($event)"/>
         <p>支持txt/doc/docx/pdf格式文件，建议总文件数10个以内</p>
       </div>
     </div>

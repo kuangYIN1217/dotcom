@@ -123,62 +123,6 @@ export class TextDemoComponent {
     console.log(this.uploader.queue);
     this.upload();
   }
-
-/*  getProgress(){
-      this.uploader.uploadAll();
-      this.uploader.onProgressItem=(fileItem: FileItem, progress: any)=>{
-      //console.log(fileItem);
-      if(progress==100){
-        setTimeout(()=>{
-          fileItem.headers.flag=1;
-        }, 300);
-      }
-      //console.log(progress);
-    };
-      console.log(this.uploader.queue);
-
- /!*     let bool = this.contains(this.uploader.queue,item);
-      if(bool===false){
-       console.log(this.uploader.queue.indexOf(item));
-      }*!/
-/!*      if(JSON.parse(response).errorPaths){
-        this.errorPaths.push(JSON.parse(response).errorPaths);
-      }
-      this.resultArr.push(JSON.parse(response).content);
-      this.allFlow=this.allFlow+JSON.parse(response).flow;
-      let b = this.resultArr.join(',');
-      let c = this.errorPaths.join(',');
-      if(this.uploader.queue.length-1){
-        this.content = b;
-        this.error = c;
-        this.flow = this.allFlow.toString();
-      }*!/
-/!*      for(let j in this.uploader.queue){
-        this.uploader.queue[j].onProgress = (progress: number)=>{
-          this.progress=0;
-          this.uploader.queue[j].progress = progress;
-          if(this.uploader.queue[j].progress==100){
-            setTimeout(()=>{
-              this.uploader.queue[j].headers.flag=1;
-            }, 300);
-          }
-        };
-        this.uploader.queue[j].onSuccess = (response: any, status: any, headers: any) => {
-          if(JSON.parse(response).errorPaths){
-            this.errorPaths.push(JSON.parse(response).errorPaths);
-          }
-          this.resultArr.push(JSON.parse(response).content);
-          this.allFlow=this.allFlow+JSON.parse(response).flow;
-          let b = this.resultArr.join(',');
-          let c = this.errorPaths.join(',');
-          if(Number(j)==this.uploader.queue.length-1){
-            this.content = b;
-            this.error = c;
-            this.flow = this.allFlow.toString();
-          }
-        };
-      }*!/
-  }*/
   analysis(i){
     let index = this.uploader.getIndexOfItem(this.uploader.queue[i]);
     this.resultArr.splice(index,1);
@@ -188,8 +132,8 @@ export class TextDemoComponent {
         this.allFlow = this.allFlow + this.flowArr[j];
     }
     this.flow = this.allFlow.toString();
-    console.log(this.content);
-    console.log(this.flow);
+    //console.log(this.content);
+    //console.log(this.flow);
   }
   getProgress(j){
     if(j>9){
