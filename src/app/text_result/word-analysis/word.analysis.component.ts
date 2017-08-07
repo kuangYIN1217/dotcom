@@ -10,6 +10,7 @@ import {Component, Input} from '@angular/core'
 })
 export class WordAnalysisComponent {
   s_selected_all: boolean = true;
+  status:string;
   @Input() d_word_list: any ;
 
   ngOnChanges(...args: any[]) {

@@ -3,13 +3,12 @@
     <div class="top">词性分析</div>
     <div class="content">
       <cpt-tip [data]="d_word_list"></cpt-tip>
-
     </div>
   </div>
   <div class="right item">
     <div class="top">词性图例
       <div class="select-all">
-        <input type="checkbox"  (change)="$selected_all_change()"><span>全选</span>
+        <input type="checkbox" id='checkbox' (change)="$selected_all_change()" [attr.checked]="s_selected_all?'checked':'unchecked'"><span>全选</span>
       </div>
     </div>
     <div class="content">
