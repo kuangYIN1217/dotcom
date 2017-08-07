@@ -2,4 +2,8 @@
 
 let _SERVER_URL = 'http://172.16.34.150:8092';
 
+/*192.168.16.190*/
+/*10.165.33.20*/
+/*172.16.34.150*/
+
 export const SERVER_URL = _SERVER_URL;
