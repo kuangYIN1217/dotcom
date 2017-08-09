@@ -40,4 +40,7 @@ export class WordAnalysisComponent {
     }
   }
 
+  $selected_not_all() {
+    this.s_selected_all = false;
+  }
 }

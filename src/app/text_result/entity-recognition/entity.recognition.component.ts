@@ -38,4 +38,9 @@ export class EntityRecognitionComponent {
       this.d_word_list[0].show = true;
     }
   }
+
+  $selected_not_all() {
+    this.s_selected_all = false;
+  }
+
 }

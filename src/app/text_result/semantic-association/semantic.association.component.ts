@@ -21,6 +21,7 @@ export class SemanticAssociationComponent {
   initEcharts() {
     /* 获取数据 */
     let json = this.semantic;
+    console.log(json)
     //console.log(json);
     if(json.nodes){
     var myChart = echarts.init(document.querySelector('.echarts-semantic-association'));
@@ -41,12 +42,30 @@ export class SemanticAssociationComponent {
                     color: '#71d3cf',
                   }
                 }
+                node.label = {
+                  normal: {
+                    textStyle: {
+                      color: '#778498',
+                      fontSize: 16
+                    }
+                  }
+                }
+
               } else {
                 node.itemStyle = {
                   normal: {
                     color: '#ffb680',
                   }
                 }
+                node.label = {
+                  normal: {
+                    textStyle: {
+                      color: '#778498',
+                      fontSize: 12
+                    }
+                  }
+                }
+
               }
               return node;
             }),
