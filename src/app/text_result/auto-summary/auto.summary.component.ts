@@ -11,4 +11,7 @@ import {Component , Input} from '@angular/core'
 })
 export class AutoSummaryComponent {
   @Input() d_summary: string;
+  ngOnChanges(...args: any[]) {
+    document.getElementById('content').innerHTML = this.d_summary;
+  }
 }
