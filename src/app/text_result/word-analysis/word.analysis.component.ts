@@ -14,7 +14,6 @@ export class WordAnalysisComponent {
   @Input() d_word_list: any ;
 
   ngOnChanges(...args: any[]) {
-    //console.log(this.d_value);
     if (this.d_word_list.length) {
       for (let i = 0 ; i < this.d_word_list.length ; i ++) {
         this.d_word_list[i].show = true;

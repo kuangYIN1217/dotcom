@@ -1,4 +1,5 @@
 .tip-class {
+  display: inline-block;
   margin: 5px 0;
   transition: 0.3s all linear 0s;
 }

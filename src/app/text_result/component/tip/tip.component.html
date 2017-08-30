@@ -1,9 +1,16 @@
-<div class="tip-wrapper">
+<!--<div class="tip-wrapper">
   <div class="tip-class" *ngFor="let item of data; let i = index" >
     <div class="tips" *ngIf="item.show">
       <div  class="tip" [ngStyle]="{'background': item.color}" *ngFor="let tip of item.words">
         {{tip}}
       </div>
     </div>
+  </div>
+</div>-->
+<div class="tip-wrapper">
+  <div class="tip-class" *ngFor="let item of data; let i = index" >
+      <div  class="tip" [ngStyle]="{'background': item.color}">
+        {{item.words}}
+      </div>
   </div>
 </div>

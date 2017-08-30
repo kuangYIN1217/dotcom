@@ -1,7 +1,14 @@
 <div class="checkbox-wrapper">
+  <div class="checkbox" *ngFor="let item of temArr; let i = index">
+    <!--<input type="checkbox" *ngIf="checkbox"  (change)="$checkbox_change(i)" [checked]="item.show">-->
+    <div class="color" [ngClass]="{'left-mini': !checkbox}" [ngStyle]="{'background': item.color}"></div>
+    <div class="des" [ngClass]="{'left-mini': !checkbox}">{{item.des}}</div>
+  </div>
+</div>
+<!--<div class="checkbox-wrapper">
   <div class="checkbox" *ngFor="let item of data; let i = index">
     <input type="checkbox" *ngIf="checkbox"  (change)="$checkbox_change(i)" [checked]="item.show">
     <div class="color" [ngClass]="{'left-mini': !checkbox}" [ngStyle]="{'background': item.color}"></div>
     <div class="des" [ngClass]="{'left-mini': !checkbox}">{{item.des}}</div>
   </div>
-</div>
+</div>-->

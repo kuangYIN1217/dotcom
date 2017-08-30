@@ -7,12 +7,13 @@
   </div>
   <div class="right item">
     <div class="top">词性图例
-      <div class="select-all">
+<!--      <div class="select-all">
         <input type="checkbox" id='checkbox' (change)="$selected_all_change()" [checked]="s_selected_all"><span>全选</span>
-      </div>
+      </div>-->
     </div>
     <div class="content">
-      <cpt-checkbox [(data)]="d_word_list" (selectNotAll) = "$selected_not_all()"></cpt-checkbox>
+      <!--<cpt-checkbox [(data)]="d_word_list" (selectNotAll) = "$selected_not_all()"></cpt-checkbox>-->
+      <cpt-checkbox [checkbox]="false" [data]="d_word_list"></cpt-checkbox>
       <cpt-title-des title="词性说明" des="词性标注为分词结果中的每个单词标注一个正确的词性，确定每个词是名词、动词、形容词或其他词性。"></cpt-title-des>
     </div>
   </div>
