@@ -23,6 +23,7 @@ import { CheckboxComponent } from './text_result/component/checkbox/checkbox.com
 import { TipComponent } from './text_result/component/tip/tip.component';
 import {HttpModule} from "@angular/http";
 import {TextClusteriComponent} from "./text_result/text-clusteri/text-clusteri.component";
+import {WordboxComponent} from "./text_result/component/wordBox/wordbox.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import {TextClusteriComponent} from "./text_result/text-clusteri/text-clusteri.c
     TitleDesComponent,
     CheckboxComponent,
     TipComponent,
-    TextClusteriComponent
+    TextClusteriComponent,
+    WordboxComponent
   ],
   imports: [
     AppRoutingModule,

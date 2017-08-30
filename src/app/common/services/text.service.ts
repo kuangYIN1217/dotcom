@@ -56,4 +56,14 @@ export class TextService {
         }
       });
   }
+  getWord(){
+    let path = "/api/scan/scanAllTagging";
+    let headers = this.getHeaders();
+    return this.http.get(this.SERVER_URL+path, { headers : headers})
+      .map((response: Response) => {
+        if (response && response.json()) {
+          return response.json();
+        }
+      });
+  }
 }
