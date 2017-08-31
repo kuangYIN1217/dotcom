@@ -2,7 +2,7 @@
  * 词性分析
  * Created by Administrator on 2017/7/5 0005.
  */
-import {Component, Input} from '@angular/core'
+import {Component, Input, EventEmitter, Output} from '@angular/core'
 import {TextService} from "app/common/services/text.service";
 @Component({
   selector: 'ele-word-analysis',
@@ -14,7 +14,9 @@ export class WordAnalysisComponent {
   s_selected_all: boolean = true;
   status:string;
   wordlist:any[]=[];
+  content:number=0;
   @Input() d_word_list: any ;
+  @Output() dataChange: EventEmitter<any> = new EventEmitter();
   constructor(private textService: TextService) {
       this.textService.getWord()
         .subscribe(result=>{
@@ -31,6 +33,16 @@ export class WordAnalysisComponent {
   }
   ngOnInit() {
 
+  }
+
+  toggle(item){
+    if(item=='thulac'){
+      this.content = 1;
+      this.dataChange.emit('thulac');
+    }else if(item=='ltp'){
+      this.content = 0;
+      this.dataChange.emit('ltp');
+    }
   }
   $selected_all_change () {
     this.s_selected_all = !this.s_selected_all;

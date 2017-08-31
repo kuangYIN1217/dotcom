@@ -22,17 +22,17 @@ export class TextResultComponent {
   d_summary:string;
   emotionalRec:any={};
   semanticAss:any={};
+  target:string='ltp';
   constructor(private route: ActivatedRoute ,private router: Router,private textService: TextService) {
 
   }
-
   ngOnInit() {
     this.setSelectedScrollTop();
     this.windowScroll();
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
       //console.log(this.id);
-      this.textService.getAllData(this.id)
+      this.textService.getAllData(this.id,this.target)
         .subscribe(result=>{
             this.wordAnalysis=result.taggingAnalyses;
             this.wordRatio = result.taggingComponentRatio;
@@ -44,6 +44,20 @@ export class TextResultComponent {
             this.semanticAss = this.getSemanticAss(result.semanticAssociation);
         })
     })
+  }
+  dataChange(event){
+    console.log(event);
+    this.textService.getAllData(this.id,event)
+      .subscribe(result=>{
+        this.wordAnalysis=result.taggingAnalyses;
+        this.wordRatio = result.taggingComponentRatio;
+        this.entityRec = result.entityRecognitions;
+        this.d_summary = result.summaries[0].text;
+        this.textCategory = this.getTextCategory(result.classifications);
+        this.infoExtract = this.getInfoExtract(result.keywords);
+        this.emotionalRec = this.getEmotionalRec(result.sentiments);
+        this.semanticAss = this.getSemanticAss(result.semanticAssociation);
+      })
   }
   getSemanticAss(array){
     let nodes = array[0].nodes;

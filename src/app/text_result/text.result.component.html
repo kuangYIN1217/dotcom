@@ -13,7 +13,7 @@
   </nav>
   <div class="container padding-header result-content">
       <!-- 词性分析 -->
-      <ele-word-analysis [d_word_list] = "wordAnalysis"></ele-word-analysis>
+      <ele-word-analysis [d_word_list] = "wordAnalysis" (dataChange)="dataChange($event)"></ele-word-analysis>
 
       <!-- 词性构成比例 -->
       <ele-word-ratio [d_word_list] = "wordRatio"></ele-word-ratio>

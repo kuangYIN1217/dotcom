@@ -46,8 +46,8 @@ export class TextService {
         }
       });
   }
-  getAllData(id:number){
-    let path = "/api/scan//scanAllResult/"+id;
+  getAllData(id,target){
+    let path = "/api/scan/scanAllResult/"+id+"/"+target;
     let headers = this.getHeaders();
     return this.http.get(this.SERVER_URL+path, { headers : headers})
       .map((response: Response) => {

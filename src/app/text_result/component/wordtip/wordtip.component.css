@@ -7,8 +7,7 @@
   margin: 0 0;
 }
 .tips {
-  display: inline-block;
-  transition: 0.3s all linear 0s;
+  display:block !important;
 }
 .tip {
   display: inline-block;

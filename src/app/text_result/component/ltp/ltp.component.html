@@ -1,0 +1,10 @@
+<div class="tip-wrapper">
+  <div class="tip-class" *ngFor="let item of data; let i = index" >
+    <div  class="tip"  [ngStyle]="{'background': item.color}" *ngIf="item.words!='<br/>'">
+      {{item.words}}
+    </div>
+    <div  class="tip" id="tip" *ngIf="item.words=='<br/>'">
+      {{item.words}}
+    </div>
+  </div>
+</div>

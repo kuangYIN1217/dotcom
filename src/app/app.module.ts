@@ -24,6 +24,8 @@ import { TipComponent } from './text_result/component/tip/tip.component';
 import {HttpModule} from "@angular/http";
 import {TextClusteriComponent} from "./text_result/text-clusteri/text-clusteri.component";
 import {WordboxComponent} from "./text_result/component/wordBox/wordbox.component";
+import {WordTipComponent} from "./text_result/component/wordtip/wordtip.component";
+import {LtpTipComponent} from "./text_result/component/ltp/ltp.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import {WordboxComponent} from "./text_result/component/wordBox/wordbox.componen
     CheckboxComponent,
     TipComponent,
     TextClusteriComponent,
-    WordboxComponent
+    WordboxComponent,
+    WordTipComponent,
+    LtpTipComponent
   ],
   imports: [
     AppRoutingModule,
