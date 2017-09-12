@@ -10,8 +10,16 @@ import {Component , Input} from '@angular/core'
   templateUrl: './auto.summary.component.html'
 })
 export class AutoSummaryComponent {
-  @Input() d_summary: string;
-  ngOnChanges(...args: any[]) {
-    document.getElementById('content').innerHTML = this.d_summary;
+  @Input() d_summary: any={};
+  content:number=1;
+/*  ngOnChanges(...args: any[]) {
+    console.log(this.d_summary);
+  }*/
+  toggle(item){
+    if(item=='extract'){
+      this.content = 1;
+    }else if(item=='abstract'){
+      this.content = 0;
+    }
   }
 }

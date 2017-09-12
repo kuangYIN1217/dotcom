@@ -26,6 +26,8 @@ import {TextClusteriComponent} from "./text_result/text-clusteri/text-clusteri.c
 import {WordboxComponent} from "./text_result/component/wordBox/wordbox.component";
 import {WordTipComponent} from "./text_result/component/wordtip/wordtip.component";
 import {LtpTipComponent} from "./text_result/component/ltp/ltp.component";
+import {ExtractSummariesComponent} from "./text_result/component/extract_summaries/extract_summaries.component";
+import {AbstractSummariesComponent} from "./text_result/component/abstract_summaries/abstract_summaries.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,9 @@ import {LtpTipComponent} from "./text_result/component/ltp/ltp.component";
     TextClusteriComponent,
     WordboxComponent,
     WordTipComponent,
-    LtpTipComponent
+    LtpTipComponent,
+    ExtractSummariesComponent,
+    AbstractSummariesComponent
   ],
   imports: [
     AppRoutingModule,

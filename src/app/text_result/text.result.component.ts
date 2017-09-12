@@ -19,10 +19,11 @@ export class TextResultComponent {
   entityRec:any[]=[];
   infoExtract:any[]=[];
   textCategory:any[]=[];
-  d_summary:string;
+  d_summary:any={};
   emotionalRec:any={};
   semanticAss:any={};
   target:string='ltp';
+  cluster:any[]=[];
   constructor(private route: ActivatedRoute ,private router: Router,private textService: TextService) {
 
   }
@@ -37,11 +38,12 @@ export class TextResultComponent {
             this.wordAnalysis=result.taggingAnalyses;
             this.wordRatio = result.taggingComponentRatio;
             this.entityRec = result.entityRecognitions;
-            this.d_summary = result.summaries[0].text;
+            this.d_summary = result.summaries[0];
             this.textCategory = this.getTextCategory(result.classifications);
             this.infoExtract = this.getInfoExtract(result.keywords);
             this.emotionalRec = this.getEmotionalRec(result.sentiments);
             this.semanticAss = this.getSemanticAss(result.semanticAssociation);
+            this.cluster = JSON.parse(result.cluster[0].clusterval);
         })
     })
   }

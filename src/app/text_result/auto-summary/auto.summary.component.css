@@ -4,3 +4,19 @@
   padding: 30px;
   color: #333;
 }
+.top{
+  overflow: hidden;
+}
+.thulac,.ltp{
+  width:40%;
+  float: left;
+  cursor: pointer;
+}
+.thulac input,.ltp input{
+  margin-right: 10px;
+}
+.radio{
+  padding:20px 0px 0px 34px;
+  color: #666;
+  font-size: 15px;
+}

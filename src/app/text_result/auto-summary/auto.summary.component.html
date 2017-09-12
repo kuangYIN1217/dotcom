@@ -2,13 +2,17 @@
   <div class="left item">
     <div class="top">自动摘要</div>
     <div class="content" id="content">
-
+        <cpt-extract [datalist]="d_summary" *ngIf="content==1"></cpt-extract>
+        <cpt-abstract [datalist]="d_summary" *ngIf="content==0"></cpt-abstract>
     </div>
   </div>
   <div class="right item">
     <div class="top">摘要提取说明</div>
+    <div class="radio">
+      <div class="ltp"><input type="radio" name="waod" value="ltp" checked  (click)="toggle('extract')"/>关键字摘要</div>
+      <div class="thulac"><input type="radio" name="waod" value="thulac"  (click)="toggle('abstract')"/>语义摘要</div>
+    </div>
     <div class="content">
-
       <cpt-title-des  des="自动摘要是计算机自动从原始文本中提取简单连贯的短文以反映中心内容。"></cpt-title-des>
     </div>
   </div>

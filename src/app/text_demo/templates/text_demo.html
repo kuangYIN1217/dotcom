@@ -2,7 +2,7 @@
   <div class="tabs">
     <div class="tab_item tab_margin" (click)="textDemo()" [class.tab_focus]="textShow==1">文本DEMO</div>
     <div class="tab_item" (click)="uploadText()" [class.tab_focus]="textShow==2">上传文本文件</div>
-    <div class="tab_item" (click)="bigText()" [class.tab_focus]="textShow==3">超大文本文件</div>
+    <!--<div class="tab_item" (click)="bigText()" [class.tab_focus]="textShow==3">超大文本文件</div>-->
   </div>
   <div [style.display]="textShow==1?'':'none'">
     <textarea class="textarea" maxlength=2000 [(ngModel)]="txtValue" placeholder="建议输入2000字以内" id="demoTxt" (keyup)="textChange()"></textarea>

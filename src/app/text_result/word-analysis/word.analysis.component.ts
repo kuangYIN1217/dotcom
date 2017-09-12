@@ -38,10 +38,10 @@ export class WordAnalysisComponent {
   toggle(item){
     if(item=='thulac'){
       this.content = 1;
-      this.dataChange.emit('thulac');
+      //this.dataChange.emit('thulac');
     }else if(item=='ltp'){
       this.content = 0;
-      this.dataChange.emit('ltp');
+     // this.dataChange.emit('ltp');
     }
   }
   $selected_all_change () {

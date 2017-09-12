@@ -1,0 +1,12 @@
+<div class="extract-wrapper">
+  <div class="extract-title">
+    <span (click)="summary10()" [class.focus]="textIndex==1">10%摘要</span>
+    <span (click)="summary30()" [class.focus]="textIndex==2">30%摘要</span>
+    <span (click)="summary50()" [class.focus]="textIndex==3">50%摘要</span>
+  </div>
+  <div class="extract-content">
+    <p *ngIf="textIndex==1">{{datalist.extract_summaries_10}}</p>
+    <p *ngIf="textIndex==2">{{datalist.extract_summaries_30}}</p>
+    <p *ngIf="textIndex==3">{{datalist.extract_summaries_50}}</p>
+  </div>
+</div>

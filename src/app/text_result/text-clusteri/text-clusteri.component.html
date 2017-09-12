@@ -2,7 +2,28 @@
   <div class="left item">
     <div class="top">文本聚类</div>
     <div class="content" id="content">
-
+      <div class="extract-title">
+        <span (click)="text1()" [class.focus]="tabIndex==1">分类1</span>
+        <span (click)="text2()" [class.focus]="tabIndex==2">分类2</span>
+        <span (click)="text3()" [class.focus]="tabIndex==3">分类3</span>
+      </div>
+      <div class="extract-content">
+        <div *ngIf="tabIndex==1">
+          <div *ngFor="let item of cluster1" class="extract-model">
+            <span>{{item}}</span>
+          </div>
+        </div>
+        <div *ngIf="tabIndex==2">
+          <div *ngFor="let item of cluster2" class="extract-model">
+            <span>{{item}}</span>
+          </div>
+        </div>
+        <div *ngIf="tabIndex==3">
+          <div *ngFor="let item of cluster3" class="extract-model">
+            <span>{{item}}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="right item">

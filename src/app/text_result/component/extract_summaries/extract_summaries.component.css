@@ -1,8 +1,5 @@
-.left.item .content {
-  font-size: 15px;
-  line-height: 35px;
-  padding: 30px;
-  color: #333;
+.extract-wrapper {
+
 }
 .extract-title{
   margin-bottom: 36px;
@@ -23,15 +20,6 @@
 .extract-title .focus{
   background: #84ccc9;
 }
-.extract-content div span{
-  border-bottom: 1px dashed #d9d9d9;
-  padding-bottom: 10px;
-}
-.extract-content .extract-model{
-  margin-top: 20px;
-  padding: 0 20px;
-}
-
 @media (max-width: 1400px) {
   .extract-title span{width:142px;}
 }
