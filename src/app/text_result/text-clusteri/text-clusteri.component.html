@@ -3,24 +3,12 @@
     <div class="top">文本聚类</div>
     <div class="content" id="content">
       <div class="extract-title">
-        <span (click)="text1()" [class.focus]="tabIndex==1">分类1</span>
-        <span (click)="text2()" [class.focus]="tabIndex==2">分类2</span>
-        <span (click)="text3()" [class.focus]="tabIndex==3">分类3</span>
+        <span *ngFor="let item of cluster;let i=index" (click)="text(item,i)" [class.focus]="item.flag==1">分类{{i+1}}</span>
       </div>
       <div class="extract-content">
-        <div *ngIf="tabIndex==1">
-          <div *ngFor="let item of cluster1" class="extract-model">
-            <span>{{item}}</span>
-          </div>
-        </div>
-        <div *ngIf="tabIndex==2">
-          <div *ngFor="let item of cluster2" class="extract-model">
-            <span>{{item}}</span>
-          </div>
-        </div>
-        <div *ngIf="tabIndex==3">
-          <div *ngFor="let item of cluster3" class="extract-model">
-            <span>{{item}}</span>
+        <div>
+          <div *ngFor="let item of cluster" class="extract-model" [style.display]="item.flag==1?'':'none'">
+            <span *ngFor="let it of item.data">{{it}}</span>
           </div>
         </div>
       </div>
@@ -29,7 +17,6 @@
   <div class="right item">
     <div class="top">文本聚类说明</div>
     <div class="content">
-
       <cpt-title-des  des="文本聚类是对多个文档进行聚类划分，文档相似度较高的为同类，文档相似度较低的为不同类。"></cpt-title-des>
     </div>
   </div>

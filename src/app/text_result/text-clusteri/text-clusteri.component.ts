@@ -11,23 +11,26 @@ import {Component , Input} from '@angular/core'
 })
 export class TextClusteriComponent {
   @Input() cluster: any;
-  tabIndex:number=1;
-  cluster1:any[]=[];
-  cluster2:any[]=[];
-  cluster3:any[]=[];
-
+  tempObj:any={};
   ngOnChanges(...args: any[]) {
-    this.cluster1 = this.cluster[0];
-    this.cluster2 = this.cluster[1];
-    this.cluster3 = this.cluster[2];
+    console.log(this.cluster);
+    if(this.cluster.length>0){
+      this.cluster[0].flag = 1;
+      this.cluster[0].id = 0;
+      this.tempObj = this.cluster[0];
+    }
   }
-  text1(){
-    this.tabIndex = 1;
+  ngOnInit() {
+
   }
-  text2(){
-    this.tabIndex = 2;
-  }
-  text3(){
-    this.tabIndex = 3;
+  text(item,index){
+    if(index == this.tempObj.id){
+
+    }else{
+      item.flag = 1;
+      item.id = index;
+      this.tempObj.flag = 2;
+      this.tempObj = item;
+    }
   }
 }

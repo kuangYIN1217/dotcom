@@ -26,12 +26,12 @@
 .extract-content div span{
   border-bottom: 1px dashed #d9d9d9;
   padding-bottom: 10px;
+  display: block;
 }
 .extract-content .extract-model{
   margin-top: 20px;
   padding: 0 20px;
 }
-
 @media (max-width: 1400px) {
-  .extract-title span{width:142px;}
+  .extract-title span{width:134px;}
 }

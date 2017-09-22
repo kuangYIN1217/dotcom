@@ -2,7 +2,6 @@
  * 信息提取
  * Created by Administrator on 2017/7/6 0006.
  */
-
 import {Component, Input} from '@angular/core'
 declare var $: any;
 @Component({
@@ -15,9 +14,6 @@ export class InfoExtractComponent {
   ngOnChanges(...args: any[]) {
     //console.log(this.d_value);
     this.initJQcloud();
-  }
-  ngOnInit () {
-
   }
   initJQcloud () {
     $(".info-extract").jQCloud(this.d_value);
