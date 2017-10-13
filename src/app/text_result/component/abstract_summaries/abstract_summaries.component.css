@@ -1,6 +1,6 @@
 .checkbox-wrapper {
-  display: flex;
-  flex-wrap: wrap;
+/*  display: flex;
+  flex-wrap: wrap;*/
 }
 .checkbox {
   position: relative;
@@ -8,6 +8,12 @@
   width: 33%;
   margin-bottom: 10px;
   height: 20px;
+}
+.checkbox div{
+  word-wrap:break-word;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 input {
   position: absolute;

@@ -1,8 +1,10 @@
 .extract-wrapper {
-
 }
+
 .extract-title{
   margin-bottom: 36px;
+  -webkit-box-flex:1;
+  flex:1;
 }
 .extract-title span{
   width:182px;
@@ -19,6 +21,16 @@
 }
 .extract-title .focus{
   background: #84ccc9;
+}
+.extract-content{
+
+}
+.extract-content div{
+  word-wrap:break-word;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+
 }
 @media (max-width: 1400px) {
   .extract-title span{width:142px;}
