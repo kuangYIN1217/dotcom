@@ -13,5 +13,4 @@ declare var $:any;
 
 export class LtpTipComponent {
   @Input() data: any;
-
 }

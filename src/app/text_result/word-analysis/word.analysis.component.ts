@@ -15,9 +15,11 @@ export class WordAnalysisComponent {
   status:string;
   wordlist:any[]=[];
   content:number=0;
+  id:any;
   @Input() d_word_list: any ;
   @Output() dataChange: EventEmitter<any> = new EventEmitter();
   constructor(private textService: TextService) {
+    this.id = window.sessionStorage.getItem("id");
       this.textService.getWord()
         .subscribe(result=>{
           this.wordlist = result;
@@ -38,11 +40,20 @@ export class WordAnalysisComponent {
   toggle(item){
     if(item=='thulac'){
       this.content = 1;
+      this.getData(this.id,'thulac');
       //this.dataChange.emit('thulac');
     }else if(item=='ltp'){
       this.content = 0;
+      this.getData(this.id,'ltp');
      // this.dataChange.emit('ltp');
     }
+  }
+  getData(id,target){
+    this.textService.getAllData(id,target)
+      .subscribe(result=>{
+        //console.log(result.taggingAnalyses);
+        this.d_word_list = result.taggingAnalyses;
+      });
   }
   $selected_all_change () {
     this.s_selected_all = !this.s_selected_all;

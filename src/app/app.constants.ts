@@ -3,4 +3,5 @@
 let _SERVER_URL = 'http://&REPLACEHOST&:8092';
 
 // 172.16.34.150:8092
+//&REPLACEHOST&:8092
 export const SERVER_URL = _SERVER_URL;

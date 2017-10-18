@@ -14,7 +14,7 @@ export class TextClusteriComponent {
   tempObj:any={};
   ngOnChanges(...args: any[]) {
     console.log(this.cluster);
-    if(this.cluster.length>0){
+    if(this.cluster&&this.cluster.length>0){
       this.cluster[0].flag = 1;
       this.cluster[0].id = 0;
       this.tempObj = this.cluster[0];
