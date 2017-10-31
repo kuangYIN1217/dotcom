@@ -1,0 +1,148 @@
+*{
+  margin:0;
+  padding:0;
+  color: #3e3e3e;
+  font-size: 14px;
+}
+body{
+  margin:0px;
+}
+input{
+  outline: none;
+  color: #666;
+  padding-left: 6px;
+  border:1px solid #d3d3d3;
+  border-radius: 6px;
+}
+select{
+  color: #666;
+  padding-left: 6px;
+  border:1px solid #d3d3d3;
+  border-radius: 6px;
+}
+a{
+  text-decoration: none;
+  color: #ffffff;
+}
+.demo-wapper{
+  padding-top: 100px;
+}
+.demo-content{
+  width:980px;
+  margin:0 auto;
+}
+.crawler-url{
+  overflow: hidden;
+}
+.crawler-address{
+  float: left;
+  margin-right:35px;
+}
+.crawler-address label{
+}
+.crawler-input{
+  width:260px;
+  height:30px;
+  line-height: 30px;
+  box-sizing: border-box;
+}
+.crawler-address:nth-of-type(1) .crawler-input{
+  margin-left: 42px;
+}
+.crawler-address:nth-of-type(2) .crawler-input{
+  margin-left: 20px;
+}
+.btn{
+  height:26px;
+  line-height: 26px;
+  border-radius: 6px;
+  padding:4px 40px;
+  float: right;
+}
+.crawler-btn{
+
+}
+.news{
+  margin:10px 0;
+  overflow: hidden;
+}
+.news div{
+  float: left;
+  overflow: hidden;
+}
+.news div:nth-of-type(2){
+  margin-left: 34px;
+}
+.news div:nth-of-type(2) .crawler-select{
+  margin-left: 25px;
+}
+.news label{
+  float: left;
+  line-height: 30px;
+}
+.news-span{
+}
+.news span{
+  float: left;
+  display: inline-block;
+  padding-left: 30px;
+}
+.crawler-text{
+  width:958px;
+  height:236px;
+  border:1px solid #d3d3d3;
+  resize: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding:10px;
+}
+.crawler-select{
+  width:260px;
+  height:30px;
+  line-height: 30px;
+  float: left;
+  margin-left: 18px;
+}
+.chooseLanguage select{
+  border:1px solid #d3d3d3;
+  border-radius: 4px;
+  height:30px;
+  line-height: 30px;
+  box-sizing: border-box;
+  padding-left: 4px;
+}
+.see-news-url label{
+  float: left;
+}
+.see-news-url a{
+  color: rgb(51, 155, 212);
+  display: inline-block;
+  margin-left: 60px;
+  float: left;
+  width:850px
+}
+
+.translate-btn{
+  width:100%;
+  height:52px;
+  line-height: 52px;
+  font-size: 16px;
+  color: #f0f0f0;
+  text-align: center;
+  margin-top: -4px;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+.ready{
+  background: #b2b2b2;
+}
+.start{
+  background: #4db9d3;
+}
+.ongoing{
+  background: #f0854a;
+}
+.end{
+  background: #e96749;
+}

@@ -28,6 +28,7 @@ import {WordTipComponent} from "./text_result/component/wordtip/wordtip.componen
 import {LtpTipComponent} from "./text_result/component/ltp/ltp.component";
 import {ExtractSummariesComponent} from "./text_result/component/extract_summaries/extract_summaries.component";
 import {AbstractSummariesComponent} from "./text_result/component/abstract_summaries/abstract_summaries.component";
+import {DemoComponent} from "./demo/demo.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import {AbstractSummariesComponent} from "./text_result/component/abstract_summa
     WordTipComponent,
     LtpTipComponent,
     ExtractSummariesComponent,
-    AbstractSummariesComponent
+    AbstractSummariesComponent,
+    DemoComponent
   ],
   imports: [
     AppRoutingModule,

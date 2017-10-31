@@ -1,0 +1,58 @@
+<div class="demo-wapper">
+  <div class="demo-content">
+    <div class="crawler">
+      <div class="crawler-url">
+        <div class="crawler-address">
+          <label>请输入网址：</label>
+          <input type="text" class="crawler-input" [(ngModel)] = "address" (ngModelChange)="inputChange()"/>
+        </div>
+        <div class="crawler-address">
+          <label>请输入关键字：</label>
+          <input type="text" class="crawler-input" [(ngModel)] = "keyWord" (ngModelChange)="inputChange()"/>
+        </div>
+        <a href="#" class="crawler-btn btn" onclick="return false" (click)="startCrawler()" [ngStyle]="getColor()">{{crawlerBtn}}</a>
+      </div>
+      <div class="news">
+        <div>
+          <label>请输入新闻日期：</label>
+          <select [(ngModel)] = "newsDate" class="crawler-select" (ngModelChange)="newsDate=$event;changeDate()">
+            <option value="{{item.publish}}"  *ngFor="let item of crawler">{{item.publish}}</option>
+          </select>
+          <!--<span class="news-span">{{crawler.publish}}</span>-->
+        </div>
+        <div>
+          <label>查看新闻标题：</label>
+          <!--<span>{{crawler.title}}</span>-->
+          <select [(ngModel)] = "newsTitle" class="crawler-select" (ngModelChange)="newsDate=$event;changeTitle()">
+            <option value="{{item.title}}"  *ngFor="let item of titleArr">{{item.title}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="see-news-url">
+        <label>查看新闻：</label>
+        <a href="{{newsTarget}}" target="_blank">{{newsTarget}}</a>
+      </div>
+      <textarea class="crawler-text" readonly [(ngModel)] = "resultC">{{resultC}}</textarea>
+    </div>
+    <div class="translate">
+      <div class="chooseLanguage">
+        <label>请选择语言：</label>
+        <select class="translate-select" [(ngModel)] = "fromLanguage" (ngModelChange)="languageChange()">
+          <option value="{{item.name}}" *ngFor="let item of fromLangArr">{{item.name}}</option>
+        </select>
+        <label>译</label>
+        <select class="translate-select" [(ngModel)] = "toLanguage" (ngModelChange)="languageChange()">
+          <option value="{{item.name}}" *ngFor="let item of toLangArr">{{item.name}}</option>
+        </select>
+        <a href="#" class="btn" onclick="return false" (click)="startTranslate()" [ngStyle]="getColorT()">{{translateBtn}}</a>
+      </div>
+      <textarea class="crawler-text" [(ngModel)] = "resultT">{{resultT}}</textarea>
+    </div>
+    <div class="translate-result">
+<!--      <a class="translate-btn ready" [style.display]="textBtn==1?'':'none'">开始文本分析</a>-->
+      <a class="translate-btn start" [style.display]="textBtn==2?'':'none'" (click)="textStart()">开始文本分析</a>
+      <a class="translate-btn ongoing" [style.display]="textBtn==3?'':'none'">文本分析中...</a>
+      <a class="translate-btn end" [style.display]="textBtn==4?'':'none'" (click)="analysisResult()" routerLinkActive="active" routerLink="/text_result">查看文本分析结果</a>
+    </div>
+  </div>
+</div>

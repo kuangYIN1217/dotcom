@@ -26,7 +26,17 @@ export class TextService {
     headers.append('Authorization', this.getAuthorization());
     return headers;
   }
-  setText(content,type='text',appId=1,len=2000,flow=1){
+  setText1(content,type='text',appId=1,len=200000,flow=1){
+    let path = "/api/TextAnalysis?content="+content+"&type="+type+"&appId="+appId+"&len="+len+"&flow="+flow;
+    let headers = this.getHeaders();
+    return this.http.post(this.SERVER_URL+path, { headers : headers})
+      .map((response: Response) => {
+        if (response && response.json()) {
+          return response.json();
+        }
+      });
+  }
+  setText(content,type='text',appId=1,len=200000,flow=1){
     let path = "/api/TextAnalysis?content="+content+"&type="+type+"&appId="+appId+"&len="+len+"&flow="+flow;
     let headers = this.getHeaders();
     return this.http.post(this.SERVER_URL+path, { headers : headers})

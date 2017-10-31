@@ -204,7 +204,7 @@ export class TextDemoComponent {
   }
   textStart(content){
     this.textBtn=3;
-    this.textService.setText(content)
+    this.textService.setText(encodeURI(content))
       .subscribe(result=>{
         this.id = result;
         this.textBtn=4;
