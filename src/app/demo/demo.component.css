@@ -16,6 +16,7 @@ input{
 }
 select{
   color: #666;
+  background: #ffffff;
   padding-left: 6px;
   border:1px solid #d3d3d3;
   border-radius: 6px;
