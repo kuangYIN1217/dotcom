@@ -6,9 +6,9 @@
       <a class="menu-item" (click)="$menu_click(3)" [ngClass]="{'selected': s_selected_index === 2}">自动摘要</a>
       <a class="menu-item" (click)="$menu_click(4)" [ngClass]="{'selected': s_selected_index === 3}">信息提取</a>
       <a class="menu-item" (click)="$menu_click(5)" [ngClass]="{'selected': s_selected_index === 4}">文本分类</a>
-      <a class="menu-item" (click)="$menu_click(6)" [ngClass]="{'selected': s_selected_index === 5}">情感识别</a>
+      <!--<a class="menu-item" (click)="$menu_click(6)" [ngClass]="{'selected': s_selected_index === 5}">情感识别</a>-->
       <a class="menu-item" (click)="$menu_click(7)" [ngClass]="{'selected': s_selected_index === 6}">语义联想</a>
-      <a class="menu-item" (click)="$menu_click(8)" [ngClass]="{'selected': s_selected_index === 7}">文本聚类</a>
+      <!--<a class="menu-item" (click)="$menu_click(8)" [ngClass]="{'selected': s_selected_index === 7}">文本聚类</a>-->
       <a class="back" (click)="goBack()">返回</a>
     </div>
   </nav>
@@ -20,7 +20,7 @@
       <ele-word-ratio [d_word_list] = "wordRatio"></ele-word-ratio>
 
       <!-- 实体识别 -->
-      <ele-entity-recognition [d_word_list] = "entityRec"></ele-entity-recognition>
+      <ele-entity-recognition [d_word_list] = "entityRec" [falseData]="falseData"></ele-entity-recognition>
 
       <!-- 自动摘要  -->
       <ele-auto-summary [d_summary] = "d_summary"></ele-auto-summary>
@@ -29,16 +29,16 @@
       <ele-info-extract [d_value] = "infoExtract"></ele-info-extract>
 
       <!-- 文本分类 -->
-      <ele-text-category [d_word_list] = "textCategory"></ele-text-category>
+      <ele-text-category [d_word_list] = "textCategory" [falseData]="falseData"></ele-text-category>
 
       <!-- 情感识别 -->
-      <ele-emotional-recognition [d_value] = "emotionalRec"></ele-emotional-recognition>
+      <!--<ele-emotional-recognition [d_value] = "emotionalRec"></ele-emotional-recognition>-->
 
       <!-- 语义联想 -->
       <ele-semantic-association [semantic] = "semanticAss"></ele-semantic-association>
 
       <!-- 文本聚类 -->
-      <ele-text-clusteri [cluster]="cluster"></ele-text-clusteri>
+      <!--<ele-text-clusteri [cluster]="cluster"></ele-text-clusteri>-->
 
   </div>
 

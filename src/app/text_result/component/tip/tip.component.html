@@ -1,5 +1,5 @@
 <div class="tip-wrapper">
-  <div class="tip-class" *ngFor="let item of data; let i = index" >
+  <div class="tip-class" *ngFor="let item of data; let i = index" style="display: block;">
     <div class="tips" *ngIf="item.show">
       <div  class="tip" [ngStyle]="{'background': item.color}" *ngFor="let tip of item.words">
         {{tip}}

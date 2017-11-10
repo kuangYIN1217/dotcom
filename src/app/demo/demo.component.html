@@ -51,7 +51,7 @@
     <div class="translate-result">
 <!--      <a class="translate-btn ready" [style.display]="textBtn==1?'':'none'">开始文本分析</a>-->
       <a class="translate-btn start" [style.display]="textBtn==2?'':'none'" (click)="textStart()">开始文本分析</a>
-      <a class="translate-btn ongoing" [style.display]="textBtn==3?'':'none'">文本分析中...</a>
+      <a class="translate-btn ongoing" [style.display]="textBtn==3?'':'none'">文本分析中（<span style="color:white">{{analysisIng}}</span>%）</a>
       <a class="translate-btn end" [style.display]="textBtn==4?'':'none'" (click)="analysisResult()" routerLinkActive="active" routerLink="/text_result">查看文本分析结果</a>
     </div>
   </div>

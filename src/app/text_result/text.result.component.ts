@@ -25,6 +25,7 @@ export class TextResultComponent {
   target:string='ltp';
   cluster:any[]=[];
   allDate:any={};
+  falseData:boolean;
   constructor(private route: ActivatedRoute ,private router: Router,private textService: TextService) {
 
   }
@@ -34,8 +35,7 @@ export class TextResultComponent {
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
       this.allDate = params['allDate'];
-      console.log(this.allDate);
-      console.log(this.id);
+      this.falseData = params['falseData'];
       //console.log(this.id);
       sessionStorage.setItem("id",this.id);
       this.textService.getAllData(this.id,this.target)
@@ -53,7 +53,7 @@ export class TextResultComponent {
     })
   }
   dataChange(event){
-    console.log(event);
+    //console.log(event);
     this.textService.getAllData(this.id,event)
       .subscribe(result=>{
         this.wordAnalysis=result.taggingAnalyses;
