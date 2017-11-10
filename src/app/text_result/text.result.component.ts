@@ -24,6 +24,7 @@ export class TextResultComponent {
   semanticAss:any={};
   target:string='ltp';
   cluster:any[]=[];
+  allDate:any={};
   constructor(private route: ActivatedRoute ,private router: Router,private textService: TextService) {
 
   }
@@ -32,9 +33,11 @@ export class TextResultComponent {
     this.windowScroll();
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
+      this.allDate = params['allDate'];
+      console.log(this.allDate);
+      console.log(this.id);
       //console.log(this.id);
       sessionStorage.setItem("id",this.id);
-      console.log(this.id);
       this.textService.getAllData(this.id,this.target)
         .subscribe(result=>{
             this.wordAnalysis=result.taggingAnalyses;
@@ -94,7 +97,7 @@ export class TextResultComponent {
     return array;
   }
   goBack(){
-
+    this.router.navigate(['/demo'],{queryParams: { "id": this.id,"allDate":this.allDate}});
   }
   /* 监听浏览器滚动条位置 */
   windowScroll() {

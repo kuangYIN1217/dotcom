@@ -12,10 +12,10 @@
         <input type="checkbox" id='checkbox' (change)="$selected_all_change()" [checked]="s_selected_all"><span>全选</span>
       </div>-->
     </div>
-    <div class="radio">
+<!--    <div class="radio">
       <div class="ltp"><input type="radio" name="word" value="ltp" checked  (click)="toggle('ltp')"/>ltp</div>
       <div class="thulac"><input type="radio" name="word" value="thulac"  (click)="toggle('thulac')"/>thulac</div>
-    </div>
+    </div>-->
     <div class="content">
       <!--<cpt-checkbox [(data)]="d_word_list" (selectNotAll) = "$selected_not_all()"></cpt-checkbox>-->
       <cpt-wordbox [checkbox]="false" [data]="wordlist"></cpt-wordbox>
