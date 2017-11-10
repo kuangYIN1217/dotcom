@@ -1,6 +1,6 @@
 <div class="result-wrapper">
   <nav class="result-header">
-    <div class="container">
+    <div class="container" style="position: relative;">
       <a class="menu-item" (click)="$menu_click(0)" [ngClass]="{'selected': s_selected_index === 0}">词性分析</a>
       <a class="menu-item" (click)="$menu_click(2)" [ngClass]="{'selected': s_selected_index === 1}">实体识别</a>
       <a class="menu-item" (click)="$menu_click(3)" [ngClass]="{'selected': s_selected_index === 2}">自动摘要</a>
@@ -9,7 +9,7 @@
       <!--<a class="menu-item" (click)="$menu_click(6)" [ngClass]="{'selected': s_selected_index === 5}">情感识别</a>-->
       <a class="menu-item" (click)="$menu_click(7)" [ngClass]="{'selected': s_selected_index === 6}">语义联想</a>
       <!--<a class="menu-item" (click)="$menu_click(8)" [ngClass]="{'selected': s_selected_index === 7}">文本聚类</a>-->
-      <a class="back" (click)="goBack()">返回</a>
+      <a class="back" (click)="goBack()" style="position: absolute;right: 0;">返回</a>
     </div>
   </nav>
   <div class="container padding-header result-content">

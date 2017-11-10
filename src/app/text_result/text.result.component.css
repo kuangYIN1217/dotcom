@@ -34,15 +34,18 @@
 }
 .back{
   width: 70px;
-  height: 100%;
-  line-height: 85px;
+  height: 34px;
+  line-height: 34px;
+  border: 1px solid #dedede;
+  background: #4db9d3;
+  border-radius: 8px;
   text-align: center;
   box-sizing: border-box;
   font-size: 15px;
-  color: #333;
+  color: #fff;
+  margin-top: 22px;
   text-decoration: none;
   cursor: pointer;
-  float: right;
 }
 .menu-item:hover {
   color: #4db9d3;
