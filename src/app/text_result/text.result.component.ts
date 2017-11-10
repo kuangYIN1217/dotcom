@@ -93,6 +93,9 @@ export class TextResultComponent {
     }
     return array;
   }
+  goBack(){
+
+  }
   /* 监听浏览器滚动条位置 */
   windowScroll() {
     let $this = this;

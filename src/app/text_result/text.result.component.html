@@ -9,7 +9,7 @@
       <a class="menu-item" (click)="$menu_click(6)" [ngClass]="{'selected': s_selected_index === 5}">情感识别</a>
       <a class="menu-item" (click)="$menu_click(7)" [ngClass]="{'selected': s_selected_index === 6}">语义联想</a>
       <a class="menu-item" (click)="$menu_click(8)" [ngClass]="{'selected': s_selected_index === 7}">文本聚类</a>
-      <a class="back">返回</a>
+      <a class="back" (click)="goBack()">返回</a>
     </div>
   </nav>
   <div class="container padding-header result-content">

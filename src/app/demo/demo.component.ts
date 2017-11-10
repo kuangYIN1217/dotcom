@@ -91,6 +91,7 @@ export class DemoComponent{
   newsTarget:string;
   translateContent:string;
   titleArr:any[]=[];
+  allDate:any={};
   constructor(private demoService:DemoService,private textService:TextService,private router:Router) {
     this.fromLanguage = this.fromLangArr[0].name;
     this.toLanguage = this.toLangArr[0].name;
@@ -121,12 +122,12 @@ export class DemoComponent{
           this.colorIndex=2;
           this.getColor();
           this.crawlerBtn='爬取完成';
-          console.log(this.crawlerBtn);
+          //console.log(this.crawlerBtn);
           if(result.state==0){
             alert("没有内容！");
           }else if(result.state==1){
             this.crawler = result.msg;
-            console.log(this.crawler);
+            //console.log(this.crawler);
             if(this.crawler.length>0){
               for(let i=0;i<this.crawler.length;i++){
                 for(let j=0;j<this.crawler[i].content.length;j++){
@@ -135,7 +136,7 @@ export class DemoComponent{
                   this.titleArr.push(obj);
                 }
               }
-              console.log(this.titleArr);
+              //console.log(this.titleArr);
               this.newsDate = this.crawler[0].publish;
               this.newsTitle = this.titleArr[0].title;
               this.newsTarget = this.crawler[0].content[0].url;
@@ -179,7 +180,7 @@ export class DemoComponent{
           if(result.msg.length>0){
             this.translateContent = result.msg[0].content;
             this.resultC = this.translateContent;
-            console.log(this.resultC);
+            //console.log(this.resultC);
           }
         })
     }
@@ -192,16 +193,25 @@ export class DemoComponent{
     for(let j=0;j<temSpace.length;j++){
       resultT += temSpace[j]+'';
     }
-    console.log(resultT);
+    //console.log(resultT);
     this.textService.setText(encodeURI(resultT))
       .subscribe(result=>{
         this.id = result;
         this.textBtn=4;
         //this.sessionSet();
-        console.log(this.id);
+        //console.log(this.id);
       });
   }
   analysisResult(){
+    this.allDate={
+      "address":this.address,
+      "keyWord":this.keyWord,
+      "newsDate":this.crawler,
+      "newsTitle":this.titleArr,
+      "newsTarget":this.newsTarget,
+      "resultC":this.resultC,
+      "resultT":this.resultT
+    };
     this.router.navigate(['/text_result'],{queryParams: { id: this.id}});
   }
   output(item){
@@ -212,13 +222,13 @@ export class DemoComponent{
       for(let i=0;i<temArr.length;i++){
         this.result += temArr[i]+'\n';
       }
-      console.log(this.result);
+      //console.log(this.result);
       let temBr:any[]=[];
       temBr = this.result.split('<br/>');
       for(let i=0;i<temBr.length;i++){
         this.result += temBr[i]+'\n';
       }
-      console.log(this.result);
+      //console.log(this.result);
       let temSpace:any[]=[];
       temSpace = this.result.split('&nbsp;');
       for(let j=0;j<temSpace.length;j++){
@@ -263,15 +273,18 @@ export class DemoComponent{
       return false;
     }else {
       this.translateBtn = '翻译中...';
-      console.log(this.translateContent);
+      //console.log(this.translateContent);
+      if(this.address=='https://www.defensenews.com/air/2017/08/23/northrops-fix-for-f-35-and-f-22-communications-problems-involves-global-hawk-uavs/'){
+          this.resultT = "";
+      }
       this.demoService.getTranslate(this.translateContent,this.fromId, this.toId)
         .subscribe(result => {
-          console.log(result);
+          //console.log(result);
           this.colorIndexT=2;
           this.getColorT();
           this.translateBtn = '翻译完成';
           this.translate = result.msg.trans_result[0].dst;
-          console.log(this.translate);
+          //console.log(this.translate);
           this.resultT = this.translate;
         })
     }
