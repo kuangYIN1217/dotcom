@@ -32,6 +32,18 @@
   text-decoration: none;
   cursor: pointer;
 }
+.back{
+  width: 70px;
+  height: 100%;
+  line-height: 85px;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  float: right;
+}
 .menu-item:hover {
   color: #4db9d3;
 }
@@ -39,6 +51,7 @@
   color: #4db9d3;
   border-bottom: 3px solid #4db9d3;
 }
+
 /* 内容区域 */
 .result-content {
   margin-top: 102px;

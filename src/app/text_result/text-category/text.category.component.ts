@@ -41,6 +41,7 @@ export class TextCategoryComponent {
       }
     }
     // 基于准备好的dom，初始化echarts实例
+    console.log(xAxis_data);
     var myChart = echarts.init(document.querySelector('.echarts-text-category'));
     // 绘制图表
     myChart.setOption({
@@ -62,6 +63,9 @@ export class TextCategoryComponent {
           data : xAxis_data,
           axisTick: {
             alignWithLabel: true
+          },
+          axisLabel: {
+            interval:0
           }
         }
       ],

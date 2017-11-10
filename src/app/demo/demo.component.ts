@@ -95,35 +95,7 @@ export class DemoComponent{
     this.fromLanguage = this.fromLangArr[0].name;
     this.toLanguage = this.toLangArr[0].name;
     this.getColor();
-    /*if(sessionStorage.getItem("address")){
-      this.address = sessionStorage.getItem("address");
-    }
-    if(sessionStorage.getItem("keyWord")){
-      // this.keyWord = sessionStorage.getItem("keyWord");
-      this.keyWord = '';
-    }
-    if(sessionStorage.getItem("newsDate")){
-      this.newsDate = sessionStorage.getItem("newsDate");
-      this.crawler.publish = sessionStorage.getItem("newsDate");
-      console.log(this.newsDate);
-    }
-    if(sessionStorage.getItem("newsTitle")){
-      this.newsTitle = sessionStorage.getItem("newsTitle");
-      this.crawler.title = sessionStorage.getItem("newsTitle");
-      console.log(this.newsTitle);
-    }
-    if(sessionStorage.getItem("resultC")){
-      this.resultC = sessionStorage.getItem("resultC");
-    }
-    if(sessionStorage.getItem("fromLanguage")){
-      this.fromLanguage = sessionStorage.getItem("fromLanguage");
-    }
-    if(sessionStorage.getItem("toLanguage")){
-      this.toLanguage = sessionStorage.getItem("toLanguage");
-    }
-    if(sessionStorage.getItem("resultT")){
-      this.resultT = sessionStorage.getItem("resultT");
-    }*/
+
   }
   startCrawler(){
     /*let reg=/^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
@@ -154,6 +126,7 @@ export class DemoComponent{
             alert("没有内容！");
           }else if(result.state==1){
             this.crawler = result.msg;
+            console.log(this.crawler);
             if(this.crawler.length>0){
               for(let i=0;i<this.crawler.length;i++){
                 for(let j=0;j<this.crawler[i].content.length;j++){
@@ -171,8 +144,6 @@ export class DemoComponent{
               alert("没有内容");
             }
           }
-
-          //this.resultC =  this.output(this.crawler);
         })
     }
   }
@@ -184,8 +155,6 @@ export class DemoComponent{
         this.titleArr = this.crawler[i].content;
       }
     }
-/*    this.newsTarget='';
-    this.resultC='';*/
   }
   changeTitle(){
     for(let i=0;i<this.crawler.length;i++){
@@ -209,21 +178,12 @@ export class DemoComponent{
           //console.log(result);
           if(result.msg.length>0){
             this.translateContent = result.msg[0].content;
-            this.resultC = this.output(this.translateContent);
+            this.resultC = this.translateContent;
+            console.log(this.resultC);
           }
         })
     }
   }
-/*  sessionSet(){
-    sessionStorage.setItem("address" , this.address);
-    sessionStorage.setItem("keyWord" , this.keyWord);
-    sessionStorage.setItem("newsTitle" , this.crawler.title);
-    sessionStorage.setItem("newsDate" , this.crawler.publish);
-    sessionStorage.setItem("resultC" , this.resultC);
-    sessionStorage.setItem("fromLanguage" , this.fromLanguage);
-    sessionStorage.setItem("toLanguage" , this.toLanguage);
-    sessionStorage.setItem("resultT" , this.resultT);
-  }*/
   textStart(){
     this.textBtn=3;
     let temSpace:any[]=[];
@@ -252,11 +212,13 @@ export class DemoComponent{
       for(let i=0;i<temArr.length;i++){
         this.result += temArr[i]+'\n';
       }
+      console.log(this.result);
       let temBr:any[]=[];
       temBr = this.result.split('<br/>');
       for(let i=0;i<temBr.length;i++){
         this.result += temBr[i]+'\n';
       }
+      console.log(this.result);
       let temSpace:any[]=[];
       temSpace = this.result.split('&nbsp;');
       for(let j=0;j<temSpace.length;j++){
@@ -310,7 +272,7 @@ export class DemoComponent{
           this.translateBtn = '翻译完成';
           this.translate = result.msg.trans_result[0].dst;
           console.log(this.translate);
-          this.resultT = this.output(this.translate);
+          this.resultT = this.translate;
         })
     }
   }
