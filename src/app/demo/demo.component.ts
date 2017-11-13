@@ -200,7 +200,8 @@ export class DemoComponent{
     this.getResult(this.newsTarget);
     this.colorIndexT=1;
     this.translateBtn = '开始翻译';
-    this.textBtn=4;
+    this.textBtn=2;
+    this.analysisIng=0;
   }
   getResult(url){
     if(url==undefined){
@@ -226,7 +227,7 @@ export class DemoComponent{
       resultT += temSpace[j]+'';
     }
     //console.log(resultT);
-    this.interval = setInterval(() =>{this.analysisIng=this.analysisIng+Math.ceil(Math.random()*20+4);
+    this.interval = setInterval(() =>{this.analysisIng=this.analysisIng+Math.ceil(Math.random()*15+4);
       if(this.analysisIng>=84){
         clearInterval(this.interval);
       }
@@ -293,12 +294,14 @@ export class DemoComponent{
     this.crawlerBtn='开始爬取';
     this.languageChange();
     this.textBtn=2;
+    this.analysisIng=0;
   }
   languageChange(){
     this.colorIndexT=1;
     this.getColorT();
     this.translateBtn = '开始翻译';
-    this.textBtn=4;
+    this.textBtn=2;
+    this.analysisIng=0;
   }
   startTranslate(){
     for(let i =0;i<this.fromLangArr.length;i++){
