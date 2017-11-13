@@ -230,7 +230,7 @@ export class DemoComponent{
       if(this.analysisIng>=84){
         clearInterval(this.interval);
       }
-    }, 3000);
+    }, 5000);
     this.textService.setText(encodeURI(resultT))
       .subscribe(result=>{
         this.id = result;
