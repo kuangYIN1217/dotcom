@@ -200,6 +200,7 @@ export class DemoComponent{
     this.getResult(this.newsTarget);
     this.colorIndexT=1;
     this.translateBtn = '开始翻译';
+    this.textBtn=4;
   }
   getResult(url){
     if(url==undefined){
@@ -296,6 +297,7 @@ export class DemoComponent{
     this.colorIndexT=1;
     this.getColorT();
     this.translateBtn = '开始翻译';
+    this.textBtn=4;
   }
   startTranslate(){
     for(let i =0;i<this.fromLangArr.length;i++){
