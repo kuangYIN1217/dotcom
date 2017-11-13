@@ -225,8 +225,8 @@ export class DemoComponent{
       resultT += temSpace[j]+'';
     }
     //console.log(resultT);
-    this.interval = setInterval(() =>this.analysisIng=this.analysisIng+Math.ceil(Math.random()*20+5) , 3000);
-    if(this.analysisIng>=88){
+    this.interval = setInterval(() =>this.analysisIng=this.analysisIng+Math.ceil(Math.random()*20+4) , 3000);
+    if(this.analysisIng>=84){
       clearInterval(this.interval);
     }
     this.textService.setText(encodeURI(resultT))
@@ -290,6 +290,7 @@ export class DemoComponent{
     this.getColor();
     this.crawlerBtn='开始爬取';
     this.languageChange();
+    this.textBtn=2;
   }
   languageChange(){
     this.colorIndexT=1;
