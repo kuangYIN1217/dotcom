@@ -226,10 +226,11 @@ export class DemoComponent{
       resultT += temSpace[j]+'';
     }
     //console.log(resultT);
-    this.interval = setInterval(() =>this.analysisIng=this.analysisIng+Math.ceil(Math.random()*20+4) , 3000);
-    if(this.analysisIng>=84){
-      clearInterval(this.interval);
-    }
+    this.interval = setInterval(() =>{this.analysisIng=this.analysisIng+Math.ceil(Math.random()*20+4);
+      if(this.analysisIng>=84){
+        clearInterval(this.interval);
+      }
+    }, 3000);
     this.textService.setText(encodeURI(resultT))
       .subscribe(result=>{
         this.id = result;
