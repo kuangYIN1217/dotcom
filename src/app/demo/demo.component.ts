@@ -126,6 +126,9 @@ export class DemoComponent{
         this.resultC = this.allDate.resultC;
         this.resultT = this.allDate.resultT;
         this.textBtn = 4;
+        if(this.address=='https://www.defensenews.com/air/2017/08/23/northrops-fix-for-f-35-and-f-22-communications-problems-involves-global-hawk-uavs/'||(this.address=='https://www.defensenews.com/air/2017/08/23/northrops-fix-for-f-35-and-f-22-communications-problems-involves-global-hawk-uavs/'&&this.keyWord=="F-22")||(this.address=='https://www.defensenews.com/air/2017/08/23/northrops-fix-for-f-35-and-f-22-communications-problems-involves-global-hawk-uavs/'&&this.keyWord=="F-35")){
+          this.falseData = true;
+        }
       }
     })
   }
@@ -202,6 +205,7 @@ export class DemoComponent{
     this.translateBtn = '开始翻译';
     this.textBtn=2;
     this.analysisIng=0;
+    this.resultT='';
   }
   getResult(url){
     if(url==undefined){
@@ -227,7 +231,7 @@ export class DemoComponent{
       resultT += temSpace[j]+'';
     }
     //console.log(resultT);
-    this.interval = setInterval(() =>{this.analysisIng=this.analysisIng+Math.ceil(Math.random()*15+4);
+    this.interval = setInterval(() =>{this.analysisIng=this.analysisIng+Math.ceil(Math.random()*20+4);
       if(this.analysisIng>=84){
         clearInterval(this.interval);
       }
